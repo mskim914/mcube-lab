@@ -32,30 +32,28 @@
            홈 섹션 PPT 슬라이드(Scroll Snap) 스타일 
         ------------------------------------------- */
         #home {
-            padding: 0 !important; /* 기본 패딩 제거하여 전체 화면 사용 */
+            padding: 0 !important;
         }
         
         #home.active {
             display: block;
-            /* 헤더 높이(약 90px)를 뺀 나머지 화면 전체를 차지하도록 설정 */
             height: calc(100vh - 90px); 
-            overflow-y: scroll; /* 스크롤 활성화 */
-            scroll-snap-type: y mandatory; /* Y축 방향으로 강제 스냅(PPT 효과) */
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
-            -ms-overflow-style: none; /* IE/Edge 스크롤바 숨김 */
-            scrollbar-width: none; /* Firefox 스크롤바 숨김 */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
         
-        /* 크롬, 사파리 등에서 스크롤바 숨김 (시각적으로 깔끔하게) */
         #home::-webkit-scrollbar {
             display: none; 
         }
 
         .home-slide {
-            height: 100%; /* 슬라이드 하나가 화면 전체 차지 */
+            height: 100%;
             width: 100%;
-            scroll-snap-align: start; /* 스크롤 시 화면 시작점에 맞춤 */
-            scroll-snap-stop: always; /* 휠을 세게 돌려도 무조건 한 장씩 멈춤 */
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -70,10 +68,10 @@
         }
 
         #slide-2 {
-            background-color: #f4f6f9; /* 2번째 슬라이드의 부드러운 배경색 */
+            background-color: #f4f6f9;
         }
 
-        /* 홈 섹션 메인 텍스트 스타일 */
+        /* 슬라이드 1 텍스트 스타일 */
         .home-display {
             text-align: center;
             font-size: 50pt;
@@ -91,12 +89,29 @@
             margin-top: 20px;
             display: block;
         }
+        .m-blue { color: #0033cc; }
         
-        /* [M] 파란색 강조 스타일 */
-        .m-blue {
-            color: #0033cc;
-        }
+        /* 슬라이드 2 (Topics & Previews) 스타일 */
+        .slide-split-layout { display: flex; width: 100%; max-width: 1200px; margin: 0 auto; padding: 40px; gap: 40px; align-items: stretch; justify-content: center; }
         
+        /* 왼쪽 Research Topics */
+        .slide-left { flex: 1; background: rgba(255, 255, 255, 0.95); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .slide-left h2 { font-size: 32px; color: #0033cc; border-bottom: 3px solid #0033cc; padding-bottom: 10px; margin-top: 0; text-align: left; display: inline-block; margin-bottom: 30px; }
+        .topic-list { list-style: none; padding: 0; margin: 0; }
+        .topic-list li { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #eaeaea; }
+        .topic-list li:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+        .topic-kor { display: block; font-size: 20px; font-weight: bold; color: #333; margin-bottom: 5px; }
+        .topic-eng { display: block; font-size: 15px; color: #666; font-style: italic; }
+        
+        /* 오른쪽 Previews */
+        .slide-right { flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 20px; }
+        .preview-card { background: rgba(255, 255, 255, 0.95); padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .preview-card:hover { transform: translateY(-5px); background: #0033cc; }
+        .preview-icon { font-size: 45px; margin-bottom: 15px; transition: transform 0.3s; }
+        .preview-card h3 { margin: 0; font-size: 22px; color: #333; transition: color 0.3s; }
+        .preview-card:hover .preview-icon { transform: scale(1.1); }
+        .preview-card:hover h3 { color: #fff; }
+
         /* 환영 팝업(모달) 스타일 */
         .modal-overlay {
             display: flex; 
@@ -126,88 +141,27 @@
             font-size: 28px;
             color: #0033cc;
         }
-        
-        /* 모달 내부 텍스트 스타일 */
         .modal-text {
             color: #000;
             line-height: 1.6;
             font-size: 16px;
         }
-        .modal-text p {
-            margin: 5px 0;
-        }
-        .modal-text .eng-text {
-            font-size: 14px;
-            color: #444;
-            margin-bottom: 20px;
-        }
-        .contact-link {
-            font-weight: bold;
-            text-decoration: underline;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-        .contact-link:hover {
-            color: #0033cc;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            color: #999;
-            font-size: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .close-btn:hover {
-            color: #333;
-        }
-        @keyframes fadeInModal {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .modal-text p { margin: 5px 0; }
+        .modal-text .eng-text { font-size: 14px; color: #444; margin-bottom: 20px; }
+        .contact-link { font-weight: bold; text-decoration: underline; cursor: pointer; transition: color 0.2s; }
+        .contact-link:hover { color: #0033cc; }
+        .close-btn { position: absolute; top: 15px; right: 20px; color: #999; font-size: 30px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .close-btn:hover { color: #333; }
+        @keyframes fadeInModal { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
 
         /* 갤러리 이미지 확대 팝업(모달) 스타일 */
-        .image-modal-overlay {
-            display: none; 
-            position: fixed;
-            z-index: 3000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            justify-content: center;
-            align-items: center;
-        }
-        .image-modal-content {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            animation: zoomIn 0.3s ease;
-        }
-        .image-close-btn {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: #fff;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .image-close-btn:hover {
-            color: #bbb;
-        }
-        @keyframes zoomIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
+        .image-modal-overlay { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); justify-content: center; align-items: center; }
+        .image-modal-content { max-width: 90%; max-height: 90%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); animation: zoomIn 0.3s ease; }
+        .image-close-btn { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .image-close-btn:hover { color: #bbb; }
+        @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         
-        /* 연구분야 상세 스타일 */
+        /* 연구분야 및 페이지 일반 스타일 */
         .research-row { display: flex; align-items: center; gap: 50px; margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid #eee; }
         .research-row.reverse { flex-direction: row-reverse; }
         .research-img { width: 500px; height: auto; max-height: 350px; object-fit: contain; }
@@ -225,7 +179,6 @@
         .info-group h3 { color: #0033cc; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 10px; }
         .scholar-link { display: inline-block; margin-top: 10px; color: #0033cc; font-weight: bold; text-decoration: underline; }
         
-        /* 갤러리 영역 스타일 */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
         .gallery-card { background: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; transition: transform 0.3s; display: flex; flex-direction: column; }
         .gallery-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
@@ -235,7 +188,6 @@
         .gallery-info h3 { margin: 0 0 10px 0; font-size: 18px; color: #333; line-height: 1.4; }
         .gallery-date { font-size: 14px; color: #0033cc; font-weight: bold; }
 
-        /* Contact 영역 스타일 */
         .contact-container { max-width: 900px; margin: 0 auto; }
         .contact-top-info { display: flex; gap: 30px; margin-bottom: 30px; flex-wrap: wrap; }
         .info-card { flex: 1; min-width: 250px; background: #f8f9fa; padding: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; }
@@ -318,12 +270,51 @@
             </div>
 
             <div class="home-slide" id="slide-2">
-                <div class="home-display" style="padding: 40px 60px;">
-                    <h2 style="font-size: 32px; border-bottom: 3px solid #0033cc; padding-bottom: 10px; margin-top: 0;">Recent Highlight</h2>
-                    <h3 style="font-size: 26px; color: #333; margin-top: 30px;">AI-기반 자동화 결함 탐지 시스템</h3>
-                    <p style="font-size: 18px; color: #555; max-width: 800px; margin: 20px auto 0; line-height: 1.6; font-weight: normal;">
-                        고해상도 비전 카메라와 YOLOv5-seg 딥러닝 알고리즘을 융합하여, 시편의 미세 결함을 실시간으로 식별하고 로봇 매니퓰레이터를 통한 다각도 스마트 검사 시스템을 구축하고 있습니다.
-                    </p>
+                <div class="slide-split-layout">
+                    <div class="slide-left">
+                        <h2>Research Topics</h2>
+                        <ul class="topic-list">
+                            <li>
+                                <span class="topic-kor">소성가공</span>
+                                <span class="topic-eng">Plastic Forming</span>
+                            </li>
+                            <li>
+                                <span class="topic-kor">박판 성형해석</span>
+                                <span class="topic-eng">Sheet Metal Forming Analysis</span>
+                            </li>
+                            <li>
+                                <span class="topic-kor">탄∙소성 재료의 구성방정식 개발</span>
+                                <span class="topic-eng">Development of Constitutive Equations for Elasto-Plastic Materials</span>
+                            </li>
+                            <li>
+                                <span class="topic-kor">스마트팩토리</span>
+                                <span class="topic-eng">Smart Factory</span>
+                            </li>
+                            <li>
+                                <span class="topic-kor">AI 소성가공 공정 설계</span>
+                                <span class="topic-eng">AI-based Plastic Forming Process Design</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="slide-right">
+                        <div class="preview-card" onclick="showPage('research')">
+                            <div class="preview-icon">🔬</div>
+                            <h3>Research</h3>
+                        </div>
+                        <div class="preview-card" onclick="showPage('projects')">
+                            <div class="preview-icon">⚙️</div>
+                            <h3>Projects</h3>
+                        </div>
+                        <div class="preview-card" onclick="showPage('publications')">
+                            <div class="preview-icon">📄</div>
+                            <h3>Publications</h3>
+                        </div>
+                        <div class="preview-card" onclick="showPage('gallery')">
+                            <div class="preview-icon">🖼️</div>
+                            <h3>Gallery</h3>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -534,8 +525,12 @@
             } else {
                 document.getElementById('link-' + pageId)?.classList.add('nav-active');
             }
-            // 페이지 전환 시 항상 최상단으로 이동
+            
+            // 페이지 전환 시 항상 최상단으로 이동 (Home 내부의 슬라이드 스크롤도 리셋)
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            if(pageId === 'home') {
+                document.getElementById('home').scrollTo({ top: 0, behavior: 'smooth' });
+            }
         }
     </script>
 </body>
