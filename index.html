@@ -28,7 +28,7 @@
         h2 { font-size: 36px; color: #0033cc; margin-bottom: 40px; text-align: center; border-bottom: 3px solid #0033cc; display: inline-block; padding-bottom: 10px; }
         .section-header { text-align: center; margin-bottom: 40px; }
         
-        /* 홈 섹션 메인 텍스트 스타일 (50pt 설정 및 색상 조정) */
+        /* 홈 섹션 메인 텍스트 스타일 */
         .home-display {
             text-align: center;
             font-size: 50pt;
@@ -47,6 +47,53 @@
         /* [M] 파란색 강조 스타일 */
         .m-blue {
             color: #0033cc;
+        }
+        
+        /* 환영 팝업(모달) 스타일 */
+        .modal-overlay {
+            display: flex; 
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            animation: fadeInModal 0.6s ease-out;
+        }
+        .modal-content {
+            background-color: #ffffff;
+            padding: 50px 40px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+            max-width: 500px;
+            width: 80%;
+        }
+        .modal-content h3 {
+            margin: 0;
+            font-size: 28px;
+            color: #0033cc;
+        }
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #999;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .close-btn:hover {
+            color: #333;
+        }
+        @keyframes fadeInModal {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         /* 연구분야 상세 스타일 */
@@ -70,6 +117,13 @@
     </style>
 </head>
 <body>
+
+    <div id="welcome-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3>M-CUBE LAB 방문을 환영합니다 !</h3>
+        </div>
+    </div>
 
     <header>
         <div class="header-logo-group">
@@ -102,7 +156,7 @@
             <div class="section-header"><h2>Welcome to M-CUBE LAB</h2></div>
             <div class="home-display">
                 영남대학교<br>
-                지능형 생산공학 연구실<br>
+                지능형 생산공 연구실<br>
                 <span class="sub-text">
                     <span class="m-blue">[M]</span>echanics 
                     <span class="m-blue">[M]</span>anufacturing 
@@ -126,7 +180,7 @@
                 <img src="./image/Research 2.jpg" alt="귀 발생 예측" class="research-img">
                 <div class="research-text">
                     <h3>2. 딥드로잉 과정에서 귀 발생 예측 (Prediction of Earing in Deep Drawing)</h3>
-                    <p>판재의 소성 이방성으로 인해 발생하는 딥드로잉 제품의 귀(Earing) 현상을 깊이 있게 연구합니다. 초기 판재의 집합조직과 이방성 계수를 정밀하게 모델링하고 유한요소해석을 통해 귀 높이를 예측하며, 공정 변수를 최적화하여 불균일한 변형을 최소화하고 균일한 제품 품질을 달성합니다.</p>
+                    <p>판재의 소성 이방성으로 인해 발생하는 딥드로잉 제품의 귀(Earing) 현상을 깊이 있게 연구합니다. 초기 판재의 집합조직과 이방성 계수를 정밀하게 모델링하고 유한요소해석을 단행하여 귀 높이를 예측하며, 공정 변수를 최적화하여 불균일한 변형을 최소화하고 균일한 제품 품질을 달성합니다.</p>
                     <p class="eng-text">We conduct in-depth research on the earing phenomenon in deep-drawn products caused by the plastic anisotropy of sheet metals. By precisely modeling the initial texture and anisotropy coefficients, we use finite element analysis to predict earing heights and optimize process parameters to minimize uneven deformation and achieve uniform product quality.</p>
                 </div>
             </div>
@@ -192,12 +246,22 @@
     <footer><p>&copy; 2024 M-CUBE Laboratory.</p></footer>
 
     <script>
+        // 모달 닫기 기능
+        function closeModal() {
+            document.getElementById('welcome-modal').style.display = 'none';
+        }
+
+        // 페이지 전환 기능
         function showPage(pageId) {
             document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('nav-active'));
-            if(pageId === 'professor' || pageId === 'students') document.getElementById('link-members').classList.add('nav-active');
-            else document.getElementById('link-' + pageId)?.classList.add('nav-active');
+            
+            if(pageId === 'professor' || pageId === 'students') {
+                document.getElementById('link-members').classList.add('nav-active');
+            } else {
+                document.getElementById('link-' + pageId)?.classList.add('nav-active');
+            }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
