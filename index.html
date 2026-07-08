@@ -29,43 +29,51 @@
         .section-header { text-align: center; margin-bottom: 40px; }
         
         /* -------------------------------------------
-           Home 섹션 전용 스타일 (PPT 슬라이드 애니메이션 적용)
-           ------------------------------------------- */
+           홈 섹션 PPT 슬라이드(Scroll Snap) 스타일 
+        ------------------------------------------- */
+        #home {
+            padding: 0 !important; /* 기본 패딩 제거하여 전체 화면 사용 */
+        }
+        
         #home.active {
             display: block;
-            padding: 0; /* 전체 화면을 채우기 위해 기본 패딩 제거 */
-            height: calc(100vh - 90px); /* 헤더 높이(90px)를 제외한 전체 화면 높이 */
-            overflow-y: auto; /* 내부 스크롤 활성화 */
-            scroll-snap-type: y mandatory; /* 세로 방향으로 스냅(PPT 넘어가는 효과) 강제 적용 */
+            /* 헤더 높이(약 90px)를 뺀 나머지 화면 전체를 차지하도록 설정 */
+            height: calc(100vh - 90px); 
+            overflow-y: scroll; /* 스크롤 활성화 */
+            scroll-snap-type: y mandatory; /* Y축 방향으로 강제 스냅(PPT 효과) */
             scroll-behavior: smooth;
+            -ms-overflow-style: none; /* IE/Edge 스크롤바 숨김 */
+            scrollbar-width: none; /* Firefox 스크롤바 숨김 */
+        }
+        
+        /* 크롬, 사파리 등에서 스크롤바 숨김 (시각적으로 깔끔하게) */
+        #home::-webkit-scrollbar {
+            display: none; 
         }
 
         .home-slide {
-            height: 100%; /* 부모(#home)의 높이만큼 꽉 채움 */
+            height: 100%; /* 슬라이드 하나가 화면 전체 차지 */
             width: 100%;
             scroll-snap-align: start; /* 스크롤 시 화면 시작점에 맞춤 */
+            scroll-snap-stop: always; /* 휠을 세게 돌려도 무조건 한 장씩 멈춤 */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            position: relative;
-        }
-
-        /* 첫 번째 슬라이드 (기존 메인 화면) */
-        .slide-1 {
-            background-image: url('./image/background.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
 
-        /* 두 번째 슬라이드 (새로 추가된 섹션) */
-        .slide-2 {
-            background-color: #f4f7f6;
-            background-image: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+        #slide-1 {
+            background-image: url('./image/background.jpg');
         }
 
-        /* 홈 메인 텍스트 스타일 */
+        #slide-2 {
+            background-color: #f4f6f9; /* 2번째 슬라이드의 부드러운 배경색 */
+        }
+
+        /* 홈 섹션 메인 텍스트 스타일 */
         .home-display {
             text-align: center;
             font-size: 50pt;
@@ -77,7 +85,6 @@
             background-color: rgba(255, 255, 255, 0.85);
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            margin-top: 20px;
         }
         .home-display .sub-text {
             color: #555;
@@ -85,73 +92,120 @@
             display: block;
         }
         
-        .m-blue { color: #0033cc; }
-
-        /* 아래로 스크롤 유도 화살표 애니메이션 */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
+        /* [M] 파란색 강조 스타일 */
+        .m-blue {
             color: #0033cc;
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            cursor: pointer;
-            animation: bounce 2s infinite;
-        }
-        .scroll-indicator span {
-            display: block;
-            font-size: 30px;
-            margin-top: -5px;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
-            40% { transform: translate(-50%, -15px); }
-            60% { transform: translate(-50%, -7px); }
-        }
-
-        /* 슬라이드 2 내부 컨텐츠 스타일 */
-        .slide-2-content {
-            max-width: 800px;
-            text-align: center;
-            padding: 40px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-        }
-        .slide-2-content h3 {
-            font-size: 32px;
-            color: #0033cc;
-            margin-bottom: 20px;
-        }
-        .slide-2-content p {
-            font-size: 20px;
-            color: #555;
-            line-height: 1.8;
         }
         
-        /* ------------------------------------------- */
-
         /* 환영 팝업(모달) 스타일 */
-        .modal-overlay { display: flex; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); justify-content: center; align-items: center; animation: fadeInModal 0.6s ease-out; }
-        .modal-content { background-color: #ffffff; padding: 50px 40px; border-radius: 12px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; max-width: 550px; width: 80%; }
-        .modal-content h3 { margin: 0 0 20px 0; font-size: 28px; color: #0033cc; }
-        .modal-text { color: #000; line-height: 1.6; font-size: 16px; }
-        .modal-text p { margin: 5px 0; }
-        .modal-text .eng-text { font-size: 14px; color: #444; margin-bottom: 20px; }
-        .contact-link { font-weight: bold; text-decoration: underline; cursor: pointer; transition: color 0.2s; }
-        .contact-link:hover { color: #0033cc; }
-        .close-btn { position: absolute; top: 15px; right: 20px; color: #999; font-size: 30px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .close-btn:hover { color: #333; }
-        @keyframes fadeInModal { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        .modal-overlay {
+            display: flex; 
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            animation: fadeInModal 0.6s ease-out;
+        }
+        .modal-content {
+            background-color: #ffffff;
+            padding: 50px 40px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+            max-width: 550px;
+            width: 80%;
+        }
+        .modal-content h3 {
+            margin: 0 0 20px 0;
+            font-size: 28px;
+            color: #0033cc;
+        }
+        
+        /* 모달 내부 텍스트 스타일 */
+        .modal-text {
+            color: #000;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        .modal-text p {
+            margin: 5px 0;
+        }
+        .modal-text .eng-text {
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 20px;
+        }
+        .contact-link {
+            font-weight: bold;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .contact-link:hover {
+            color: #0033cc;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #999;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .close-btn:hover {
+            color: #333;
+        }
+        @keyframes fadeInModal {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         /* 갤러리 이미지 확대 팝업(모달) 스타일 */
-        .image-modal-overlay { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); justify-content: center; align-items: center; }
-        .image-modal-content { max-width: 90%; max-height: 90%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); animation: zoomIn 0.3s ease; }
-        .image-close-btn { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .image-close-btn:hover { color: #bbb; }
-        @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .image-modal-overlay {
+            display: none; 
+            position: fixed;
+            z-index: 3000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+        }
+        .image-modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            animation: zoomIn 0.3s ease;
+        }
+        .image-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .image-close-btn:hover {
+            color: #bbb;
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
         
         /* 연구분야 상세 스타일 */
         .research-row { display: flex; align-items: center; gap: 50px; margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid #eee; }
@@ -248,7 +302,7 @@
     <main>
         <section id="home" class="page-section active">
             
-            <div class="home-slide slide-1">
+            <div class="home-slide" id="slide-1">
                 <div class="home-display">
                     <div class="section-header" style="margin-bottom: 20px;">
                         <h2 style="border-bottom: none; margin-bottom: 0;">Welcome to M-CUBE LAB</h2>
@@ -261,16 +315,15 @@
                         <span class="m-blue">[M]</span>achine Learning
                     </span>
                 </div>
-                <div class="scroll-indicator" onclick="scrollToSlide2()">
-                    Scroll Down
-                    <span>⬇</span>
-                </div>
             </div>
 
-            <div id="slide-2-target" class="home-slide slide-2">
-                <div class="slide-2-content">
-                    <h3>미래의 지능형 생산공학을 선도합니다</h3>
-                    <p>M-CUBE LAB은 전통적인 기계 역학(Mechanics)과 제조 공정(Manufacturing) 기술에 최첨단 머신러닝(Machine Learning) 기법을 융합하여, 소성가공 분야의 새로운 패러다임을 제시하고 있습니다.</p>
+            <div class="home-slide" id="slide-2">
+                <div class="home-display" style="padding: 40px 60px;">
+                    <h2 style="font-size: 32px; border-bottom: 3px solid #0033cc; padding-bottom: 10px; margin-top: 0;">Recent Highlight</h2>
+                    <h3 style="font-size: 26px; color: #333; margin-top: 30px;">AI-기반 자동화 결함 탐지 시스템</h3>
+                    <p style="font-size: 18px; color: #555; max-width: 800px; margin: 20px auto 0; line-height: 1.6; font-weight: normal;">
+                        고해상도 비전 카메라와 YOLOv5-seg 딥러닝 알고리즘을 융합하여, 시편의 미세 결함을 실시간으로 식별하고 로봇 매니퓰레이터를 통한 다각도 스마트 검사 시스템을 구축하고 있습니다.
+                    </p>
                 </div>
             </div>
 
@@ -342,89 +395,4 @@
             <div class="section-header"><h2>Researchers & Students</h2></div>
             <div class="grid-container">
                 <div class="card"><h3>탁윤학 (Ph.D. Course)</h3><img src="./image/Tak.jpg" style="width:150px; height:180px; object-fit:cover; border-radius:5px; margin:10px 0;"><p>연구분야: 금속재료의 성형성 연구<br>이메일: fastiter37@yu.ac.kr<br>연구실: 자동차관 202호</p></div>
-                <div class="card"><h3>김민수 (B.S. Course)</h3><img src="./image/Kim.jpg" style="width:150px; height:180px; object-fit:cover; border-radius:5px; margin:10px 0;"><p>연구분야: 미세조직내 상 AI 모델 개발<br>이메일: minsookim@yu.ac.kr<br>연구실: 자동차관 202호</p></div>
-                <div class="card"><h3>복진혁 (B.S. Course)</h3><img src="./image/Bok.jpg" style="width:150px; height:180px; object-fit:cover; border-radius:5px; margin:10px 0;"><p>연구분야: 금속재료의 성형성 연구<br>이메일: bokjh03@yu.ac.kr<br>연구실: 자동차관 202호</p></div>
-                <div class="card"><h3>박찬호 (B.S. Course)</h3><img src="./image/Park.jpg" style="width:150px; height:180px; object-fit:cover; border-radius:5px; margin:10px 0;"><p>연구분야: 금속재료의 성형성 연구<br>이메일: GRssalMeongi90@yu.ac.kr<br>연구실: 자동차관 202호</p></div>
-            </div>
-        </section>
-
-        <section id="projects" class="page-section"><div class="section-header"><h2>Projects</h2></div></section>
-        <section id="publications" class="page-section"><div class="section-header"><h2>Publications</h2></div></section>
-        
-        <section id="gallery" class="page-section">
-            <div class="section-header"><h2>Gallery</h2></div>
-            <div class="gallery-grid">
-                <div class="gallery-card"><img src="./image/Gallery7.jpg" alt="2026년 대한기계학회 대경지회 학술대회" class="gallery-img" onclick="openImage(this.src)"><div class="gallery-info"><h3>2026년 대한기계학회 대경지회 학술대회</h3><div class="gallery-date">2026.06.26</div></div></div>
-                <div class="gallery-card"><img src="./image/Gallery6.jpg" alt="2026년 스승의 날" class="gallery-img" onclick="openImage(this.src)"><div class="gallery-info"><h3>2026년 스승의 날</h3><div class="gallery-date">2026.05.15</div></div></div>
-                <div class="gallery-card"><img src="./image/Gallery5.jpg" alt="2025학년도 제 75회 전기 학위수여식" class="gallery-img" onclick="openImage(this.src)"><div class="gallery-info"><h3>2025학년도 제 75회 전기 학위수여식</h3><div class="gallery-date">2026.02.20</div></div></div>
-                <div class="gallery-card"><img src="./image/Gallery4.jpg" alt="한국소성가공학회 추계학술대회" class="gallery-img" onclick="openImage(this.src)"><div class="gallery-info"><h3>한국소성가공학회 추계학술대회</h3><div class="gallery-date">2025.11.05~07</div></div></div>
-                <div class="gallery-card"><img src="./image/Gallery3.jpg" alt="2025년 대한기계학회 대경지회 학술대회" class="gallery-img" onclick="openImage(this.src)"><div class="gallery-info"><h3>2025년 대한기계학회 대경지회 학술대회</h3><div class="gallery-date">2025.07.28</div></div></div>
-                <div class="gallery-card"><img src="./image/Gallery2.jpg" alt="(주) 화신정공 방문" class="gallery-img" onclick="openImage(this.src)"><div class="gallery-info"><h3>(주) 화신정공 방문</h3><div class="gallery-date">2025.01.15</div></div></div>
-                <div class="gallery-card"><img src="./image/Gallery1.jpg" alt="현대자동차 남양연구소 방문" class="gallery-img" onclick="openImage(this.src)"><div class="gallery-info"><h3>현대자동차 남양연구소 방문</h3><div class="gallery-date">2024.08.07</div></div></div>
-            </div>
-        </section>
-        
-        <section id="contact" class="page-section">
-            <div class="section-header"><h2>Contact Us</h2></div>
-            <div class="contact-container">
-                <div class="contact-top-info">
-                    <div class="info-card"><h3>Contact Info</h3><p><strong>Email:</strong> JinJae.Kim@yu.ac.kr</p><p><strong>Phone:</strong> 053-810-3009</p></div>
-                    <div class="info-card"><h3>Opening Hours</h3><p><strong>Mon - Fri:</strong> 9:00 am – 6:00 pm</p><p><strong>Sat - Sun:</strong> Closed</p></div>
-                </div>
-                <div class="map-container"><iframe src="https://maps.google.com/maps?q=경상북도%20경산시%20대학로%20280&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="400" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
-                <div class="address-box">
-                    <div class="address-item"><h3>Office Address</h3><p><strong>KOR:</strong> 경상북도 경산시 대학로 280, 영남대학교 자동차관 201호</p><p class="eng-addr"><strong>ENG:</strong> Room 201, Automotive Engineering Building, 280 Daehak-ro, Gyeongsan-si, Gyeongsangbuk-do, Republic of Korea</p></div>
-                    <div class="address-item"><h3>Laboratory Address</h3><p><strong>KOR:</strong> 경상북도 경산시 대학로 280, 영남대학교 자동차관 202호</p><p class="eng-addr"><strong>ENG:</strong> Room 202, Automotive Engineering Building, 280 Daehak-ro, Gyeongsan-si, Gyeongsangbuk-do, Republic of Korea</p></div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer><p>© 2024 M-CUBE Laboratory.</p></footer>
-
-    <script>
-        // 환영 모달 닫기
-        function closeModal() {
-            document.getElementById('welcome-modal').style.display = 'none';
-        }
-
-        // 모달에서 Contact 이동
-        function goToContact() {
-            closeModal();
-            showPage('contact');
-        }
-
-        // 스크롤 화살표 클릭 시 두 번째 슬라이드로 이동
-        function scrollToSlide2() {
-            document.getElementById('slide-2-target').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // 갤러리 이미지 확대
-        function openImage(src) {
-            document.getElementById('image-modal').style.display = 'flex';
-            document.getElementById('expanded-img').src = src;
-        }
-
-        // 갤러리 이미지 확대 닫기
-        function closeImageModal(event) {
-            if (event.target.id === 'image-modal' || event.target.className === 'image-close-btn') {
-                document.getElementById('image-modal').style.display = 'none';
-            }
-        }
-
-        // 페이지 전환 기능
-        function showPage(pageId) {
-            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('nav-active'));
-            
-            if(pageId === 'professor' || pageId === 'students') {
-                document.getElementById('link-members').classList.add('nav-active');
-            } else {
-                document.getElementById('link-' + pageId)?.classList.add('nav-active');
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    </script>
-</body>
-</html>
+                <div class
