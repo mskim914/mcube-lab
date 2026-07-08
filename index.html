@@ -28,7 +28,23 @@
         h2 { font-size: 36px; color: #0033cc; margin-bottom: 40px; text-align: center; border-bottom: 3px solid #0033cc; display: inline-block; padding-bottom: 10px; }
         .section-header { text-align: center; margin-bottom: 40px; }
         
-        /* 홈 섹션 메인 텍스트 스타일 */
+        /* 홈 섹션 배경 이미지 적용 */
+        #home {
+            background-image: url('./image/background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        #home.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh; /* 배경 이미지가 잘 보이도록 높이 확보 */
+        }
+
+        /* 홈 섹션 메인 텍스트 스타일 (배경 위 가독성 확보) */
         .home-display {
             text-align: center;
             font-size: 50pt;
@@ -36,7 +52,11 @@
             color: #333;
             line-height: 1.4;
             word-break: keep-all;
-            padding: 20px 0;
+            padding: 50px;
+            background-color: rgba(255, 255, 255, 0.85); /* 반투명 흰색 배경 추가 */
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            margin-top: 20px;
         }
         .home-display .sub-text {
             color: #555;
@@ -153,8 +173,10 @@
 
     <main>
         <section id="home" class="page-section active">
-            <div class="section-header"><h2>Welcome to M-CUBE LAB</h2></div>
             <div class="home-display">
+                <div class="section-header" style="margin-bottom: 20px;">
+                    <h2 style="border-bottom: none; margin-bottom: 0;">Welcome to M-CUBE LAB</h2>
+                </div>
                 영남대학교<br>
                 지능형 생산공학 연구실<br>
                 <span class="sub-text">
