@@ -28,6 +28,12 @@
         h2 { font-size: 36px; color: #0033cc; margin-bottom: 40px; text-align: center; border-bottom: 3px solid #0033cc; display: inline-block; padding-bottom: 10px; }
         .section-header { text-align: center; margin-bottom: 40px; }
         
+        /* 홈 섹션 전용 스타일 */
+        .home-content { text-align: center; margin-top: 40px; }
+        .home-title { font-size: 28px; font-weight: 700; color: #222; margin-bottom: 15px; word-break: keep-all; }
+        .home-subtitle { font-size: 20px; font-weight: 600; color: #555; letter-spacing: 0.5px; }
+        .home-subtitle span { color: #0033cc; font-weight: 800; }
+
         /* 연구분야 상세 스타일 */
         .research-row { display: flex; align-items: center; gap: 50px; margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid #eee; }
         .research-row.reverse { flex-direction: row-reverse; }
@@ -59,7 +65,7 @@
         </div>
         <nav>
             <ul>
-                <li><a onclick="showPage('home')" id="link-home" class="nav-item">Home</a></li>
+                <li><a onclick="showPage('home')" id="link-home" class="nav-item nav-active">Home</a></li>
                 <li><a onclick="showPage('research')" id="link-research" class="nav-item">Research</a></li>
                 <li class="dropdown">
                     <a class="nav-item" id="link-members">Members ▼</a>
@@ -77,10 +83,22 @@
     </header>
 
     <main>
-        <section id="home" class="page-section active"><div class="section-header"><h2>Welcome to M-CUBE LAB</h2></div></section>
+        <section id="home" class="page-section active">
+            <div class="section-header">
+                <h2>Welcome to M-CUBE LAB</h2>
+                <div class="home-content">
+                    <p class="home-title">영남대학교 지능형 생산공학 연구실</p>
+                    <p class="home-subtitle">
+                        <span>[M]</span>echanics 
+                        <span>[M]</span>anufacturing 
+                        <span>[M]</span>achine Learning
+                    </p>
+                </div>
+            </div>
+        </section>
         
         <section id="research" class="page-section">
-            <div class="section-header"><h2>Research </h2></div>
+            <div class="section-header"><h2>Research</h2></div>
             
             <div class="research-row">
                 <img src="./image/Research 1.jpg" alt="성형한계선도" class="research-img">
@@ -124,7 +142,6 @@
             </div>
         </section>
 
-        <!-- 교수님 페이지 -->
         <section id="professor" class="page-section">
             <div class="section-header"><h2>Professor</h2></div>
             <div class="prof-layout">
@@ -142,7 +159,6 @@
             </div>
         </section>
 
-        <!-- 학생 페이지 -->
         <section id="students" class="page-section">
             <div class="section-header"><h2>Researchers & Students</h2></div>
             <div class="grid-container">
