@@ -78,11 +78,11 @@
         ------------------------------------------- */
         .slide-split-layout { 
             display: grid; 
-            grid-template-columns: 1.1fr 1fr 1.3fr; /* 갤러리 영역을 위해 오른쪽을 살짝 더 넓게 */
+            grid-template-columns: 1.1fr 1fr 1.3fr; 
             width: 100%; 
-            max-width: 1600px; /* 전체 너비 확대 */
+            max-width: 1600px; 
             margin: 0 auto; 
-            padding: 40px 60px; /* 여백 확대 */
+            padding: 40px 60px; 
             gap: 40px; 
             align-items: stretch; 
         }
@@ -102,7 +102,7 @@
 
         .preview-list-card { 
             background: rgba(255, 255, 255, 0.95); 
-            padding: 40px; /* 내부 여백 확대 */
+            padding: 40px; 
             border-radius: 20px; 
             box-shadow: 0 8px 30px rgba(0,0,0,0.08); 
             cursor: pointer; 
@@ -119,7 +119,7 @@
         }
         .preview-list-card h3 { 
             margin: 0 0 25px 0; 
-            font-size: 26px; /* 폰트 확대 */
+            font-size: 26px; 
             color: #0033cc; 
             border-bottom: 2px solid #eaeaea; 
             padding-bottom: 12px; 
@@ -132,7 +132,7 @@
         /* 리스트 텍스트 스타일 (중앙 영역) */
         .mini-list { list-style: none; padding: 0; margin: 0; text-align: left; }
         .mini-list li { 
-            font-size: 17px; /* 폰트 확대 */
+            font-size: 17px; 
             color: #444; 
             margin-bottom: 18px; 
             line-height: 1.5;
@@ -144,32 +144,40 @@
         .mini-list li:last-child { margin-bottom: 0; }
         .date-badge { font-size: 13px; color: #999; display: block; margin-top: 4px; }
 
-        /* 갤러리 미니 리스트 (2x2 그리드로 변경 및 크기 확대) */
+        /* 갤러리 미니 리스트 (공백 완벽 제거형 2x2 그리드) */
         .mini-gallery-list { 
             list-style: none; 
             padding: 0; 
             margin: 0; 
             display: grid; 
-            grid-template-columns: 1fr 1fr; /* 2열 배치 */
+            grid-template-columns: 1fr 1fr; 
+            grid-template-rows: 1fr 1fr; /* 높이를 절반씩 공평하게 차지 */
             gap: 25px; 
+            flex: 1; /* 카드 내부의 남는 높이를 전부 차지하도록 설정 */
         }
         .mini-gallery-list li { 
             display: flex; 
-            flex-direction: column; /* 이미지를 위, 텍스트를 아래로 */
-            align-items: center; 
-            gap: 12px; 
-            text-align: center;
+            flex-direction: column; 
+            height: 100%; /* 그리드 셀 높이를 100% 사용 */
         }
         .mini-gallery-list img { 
             width: 100%; 
-            height: 140px; /* 이미지 높이 대폭 확대 */
-            object-fit: cover; 
+            flex: 1; /* ★핵심: 이미지가 남는 빈 공간을 쫙 늘어나서 채우도록 만듦 */
+            object-fit: cover; /* 비율이 깨지지 않고 꽉 차게 잘라냄 */
             border-radius: 8px; 
             border: 1px solid #ddd; 
             transition: opacity 0.2s;
+            min-height: 120px; /* 창이 작아져도 최소한의 높이 유지 */
         }
         .mini-gallery-list li:hover img { opacity: 0.85; }
-        .mini-gallery-list .mini-text-box { display: flex; flex-direction: column; align-items: center; width: 100%; }
+        .mini-gallery-list .mini-text-box { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            text-align: center;
+            width: 100%; 
+            margin-top: 15px; /* 이미지와 텍스트 간격 */
+        }
         .mini-gallery-list .title { 
             font-size: 15px; 
             color: #333; 
@@ -317,7 +325,7 @@
                         <ul class="topic-list">
                             <li><span class="topic-kor">소성가공</span><span class="topic-eng">Plastic Forming</span></li>
                             <li><span class="topic-kor">박판 성형해석</span><span class="topic-eng">Sheet Metal Forming Analysis</span></li>
-                            <li><span class="topic-kor">탄∙소성 재료의 구성방정식 개발</span><span class="topic-eng">Development of Constitutive Equations for Elastic-Plastic Materials</span></li>
+                            <li><span class="topic-kor">탄∙소성 재료의 구성방정식 개발</span><span class="topic-eng">Development of Constitutive Equations for Elasto-Plastic Materials</span></li>
                             <li><span class="topic-kor">스마트팩토리</span><span class="topic-eng">Smart Factory</span></li>
                             <li><span class="topic-kor">AI 소성가공 공정 설계</span><span class="topic-eng">AI-based Plastic Forming Process Design</span></li>
                         </ul>
@@ -440,7 +448,7 @@
                     <div class="info-group" style="margin-top: 20px;"><h3>Contact</h3><p>📞 053-810-3009<br>🏠 자동차관 201호<br>📧 JinJae.Kim@yu.ac.kr</p></div>
                 </div>
                 <div style="flex: 1;">
-                    <h1>김진재 (Jinjae Kim)</h1>
+                    <h1>김진재 (Jin-Jae Kim)</h1>
                     <p style="font-size: 20px;">영남대학교 미래자동차공학과 조교수</p>
                     <div class="info-group"><h3>학력 사항</h3><ul><li>2015.03 금오공과대학교 공학사</li><li>2017.03 경북대학교 공학석사</li><li>2022.03 경북대학교 공학박사</li></ul></div>
                     <div class="info-group"><h3>경력 사항</h3><ul><li>2022.07~2024.02 UNH Post Doc.</li><li>2024.03~현재 영남대 조교수</li></ul></div>
