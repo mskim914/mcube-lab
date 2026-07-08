@@ -28,23 +28,48 @@
         h2 { font-size: 36px; color: #0033cc; margin-bottom: 40px; text-align: center; border-bottom: 3px solid #0033cc; display: inline-block; padding-bottom: 10px; }
         .section-header { text-align: center; margin-bottom: 40px; }
         
-        /* 홈 섹션 배경 이미지 적용 */
-        #home {
+        /* Home 섹션 전용 레이아웃 수정 (패딩 제거 및 스크롤 구조) */
+        #home { padding: 0; }
+        #home.active { display: block; }
+        
+        /* Home 1번째 섹션 (메인 배너) */
+        .hero-section {
             background-image: url('./image/background.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-        }
-        
-        #home.active {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 70vh;
+            min-height: 85vh; /* 화면의 85% 높이 차지 */
+            padding: 50px;
         }
 
-        /* 홈 섹션 메인 텍스트 스타일 */
+        /* Home 2번째 섹션 (스크롤 아래 영역) */
+        .home-second-section {
+            padding: 80px 50px;
+            background-color: #ffffff;
+            text-align: center;
+        }
+        .home-second-section h2 { margin-bottom: 50px; }
+        
+        /* 2번째 섹션 내부 콘텐츠 박스 스타일 */
+        .highlight-box {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-align: left;
+            border-left: 5px solid #0033cc;
+        }
+        .highlight-box h3 { color: #0033cc; margin-top: 0; font-size: 24px; margin-bottom: 15px;}
+        .highlight-box p { font-size: 18px; color: #444; line-height: 1.8; margin-bottom: 10px; }
+        .highlight-box .eng-text { font-size: 16px; color: #777; font-style: italic; }
+
+        /* 홈 메인 텍스트 상자 스타일 */
         .home-display {
             text-align: center;
             font-size: 50pt;
@@ -56,7 +81,6 @@
             background-color: rgba(255, 255, 255, 0.85);
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            margin-top: 20px;
         }
         .home-display .sub-text {
             color: #555;
@@ -99,85 +123,22 @@
             color: #0033cc;
         }
         
-        /* 모달 내부 텍스트 스타일 */
-        .modal-text {
-            color: #000;
-            line-height: 1.6;
-            font-size: 16px;
-        }
-        .modal-text p {
-            margin: 5px 0;
-        }
-        .modal-text .eng-text {
-            font-size: 14px;
-            color: #444;
-            margin-bottom: 20px;
-        }
-        .contact-link {
-            font-weight: bold;
-            text-decoration: underline;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-        .contact-link:hover {
-            color: #0033cc;
-        }
+        .modal-text { color: #000; line-height: 1.6; font-size: 16px; }
+        .modal-text p { margin: 5px 0; }
+        .modal-text .eng-text { font-size: 14px; color: #444; margin-bottom: 20px; }
+        .contact-link { font-weight: bold; text-decoration: underline; cursor: pointer; transition: color 0.2s; }
+        .contact-link:hover { color: #0033cc; }
 
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            color: #999;
-            font-size: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .close-btn:hover {
-            color: #333;
-        }
-        @keyframes fadeInModal {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .close-btn { position: absolute; top: 15px; right: 20px; color: #999; font-size: 30px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .close-btn:hover { color: #333; }
+        @keyframes fadeInModal { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
 
         /* 갤러리 이미지 확대 팝업(모달) 스타일 */
-        .image-modal-overlay {
-            display: none; 
-            position: fixed;
-            z-index: 3000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            justify-content: center;
-            align-items: center;
-        }
-        .image-modal-content {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            animation: zoomIn 0.3s ease;
-        }
-        .image-close-btn {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: #fff;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .image-close-btn:hover {
-            color: #bbb;
-        }
-        @keyframes zoomIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
+        .image-modal-overlay { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); justify-content: center; align-items: center; }
+        .image-modal-content { max-width: 90%; max-height: 90%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); animation: zoomIn 0.3s ease; }
+        .image-close-btn { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .image-close-btn:hover { color: #bbb; }
+        @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         
         /* 연구분야 상세 스타일 */
         .research-row { display: flex; align-items: center; gap: 50px; margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid #eee; }
@@ -241,7 +202,7 @@
     </div>
 
     <div id="image-modal" class="image-modal-overlay" onclick="closeImageModal(event)">
-        <span class="image-close-btn" onclick="closeImageModal(event)">&times;</span>
+        <span class="image-close-btn" onclick="closeImageModal(event)">×</span>
         <img class="image-modal-content" id="expanded-img" alt="확대된 이미지">
     </div>
 
@@ -273,21 +234,31 @@
 
     <main>
         <section id="home" class="page-section active">
-            <div class="home-display">
-                <div class="section-header" style="margin-bottom: 20px;">
-                    <h2 style="border-bottom: none; margin-bottom: 0;">Welcome to M-CUBE LAB</h2>
+            <div class="hero-section">
+                <div class="home-display">
+                    <div class="section-header" style="margin-bottom: 20px;">
+                        <h2 style="border-bottom: none; margin-bottom: 0;">Welcome to M-CUBE LAB</h2>
+                    </div>
+                    영남대학교<br>
+                    지능형 생산공학 연구실<br>
+                    <span class="sub-text">
+                        <span class="m-blue">[M]</span>echanics 
+                        <span class="m-blue">[M]</span>anufacturing 
+                        <span class="m-blue">[M]</span>achine Learning
+                    </span>
                 </div>
-                영남대학교<br>
-                지능형 생산공학 연구실<br>
-                <span class="sub-text">
-                    <span class="m-blue">[M]</span>echanics 
-                    <span class="m-blue">[M]</span>anufacturing 
-                    <span class="m-blue">[M]</span>achine Learning
-                </span>
+            </div>
+
+            <div class="home-second-section">
+                <h2>Latest Research Highlights</h2>
+                <div class="highlight-box">
+                    <h3>딥러닝 기반 자동 결함 탐지 시스템 (Automated Defect Detection System)</h3>
+                    <p>컨베이어 벨트와 다관절 로봇 암을 결합하여 시편의 다면을 정밀하게 검사하는 연구를 진행하고 있습니다. 수집된 고해상도 이미지는 YOLOv5-seg 기반의 시맨틱 세그먼테이션(Semantic Segmentation) 알고리즘을 통해 실시간으로 분석되어 미세 결함을 식별합니다.</p>
+                    <p class="eng-text">We are developing a system integrating conveyor belts and robotic manipulation for multi-sided inspection of specimens. High-resolution images are processed in real-time using YOLOv5-seg to identify and segment microscopic defects.</p>
+                </div>
             </div>
         </section>
-
-        <!-- research 섹션 -->
+        
         <section id="research" class="page-section">
             <div class="section-header"><h2>Research</h2></div>
             
@@ -333,7 +304,6 @@
             </div>
         </section>
 
-        <!-- 교수님 프로파일 섹션 -->
         <section id="professor" class="page-section">
             <div class="section-header"><h2>Professor</h2></div>
             <div class="prof-layout">
@@ -342,7 +312,7 @@
                     <div class="info-group" style="margin-top: 20px;"><h3>Contact</h3><p>📞 053-810-3009<br>🏠 자동차관 201호<br>📧 JinJae.Kim@yu.ac.kr</p></div>
                 </div>
                 <div style="flex: 1;">
-                    <h1>김진재 (Jin-Jae Kim)</h1>
+                    <h1>김진재 (Jinjae Kim)</h1>
                     <p style="font-size: 20px;">영남대학교 미래자동차공학과 조교수</p>
                     <div class="info-group"><h3>학력 사항</h3><ul><li>2015.03 금오공과대학교 공학사</li><li>2017.03 경북대학교 공학석사</li><li>2022.03 경북대학교 공학박사</li></ul></div>
                     <div class="info-group"><h3>경력 사항</h3><ul><li>2022.07~2024.02 UNH Post Doc.</li><li>2024.03~현재 영남대 조교수</li></ul></div>
@@ -476,7 +446,7 @@
             document.getElementById('expanded-img').src = src;
         }
 
-        // 갤러리 이미지 확대 닫기 (배경이나 X버튼 클릭 시)
+        // 갤러리 이미지 확대 닫기
         function closeImageModal(event) {
             if (event.target.id === 'image-modal' || event.target.className === 'image-close-btn') {
                 document.getElementById('image-modal').style.display = 'none';
