@@ -90,14 +90,39 @@
             text-align: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             position: relative;
-            max-width: 500px;
+            max-width: 550px;
             width: 80%;
         }
         .modal-content h3 {
-            margin: 0;
+            margin: 0 0 20px 0;
             font-size: 28px;
             color: #0033cc;
         }
+        
+        /* 모달 내부 텍스트 스타일 */
+        .modal-text {
+            color: #000;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        .modal-text p {
+            margin: 5px 0;
+        }
+        .modal-text .eng-text {
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 20px;
+        }
+        .contact-link {
+            font-weight: bold;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .contact-link:hover {
+            color: #0033cc;
+        }
+
         .close-btn {
             position: absolute;
             top: 15px;
@@ -151,8 +176,14 @@
 
     <div id="welcome-modal" class="modal-overlay">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <span class="close-btn" onclick="closeModal()">×</span>
             <h3>M-CUBE LAB 방문을 환영합니다 !</h3>
+            <div class="modal-text">
+                <p>M-CUBE LAB 연구생과 함께 소성가공에 관심이 있는<br>대학원생 및 학부생을 모집합니다.</p>
+                <p class="eng-text">We are recruiting graduate and undergraduate students<br>interested in plastic forming to join M-CUBE LAB.</p>
+                <p>상담 문의: <span class="contact-link" onclick="goToContact()">Contact 참고</span></p>
+                <p class="eng-text" style="margin-bottom: 0;">(For consultation, please refer to the Contact page.)</p>
+            </div>
         </div>
     </div>
 
@@ -297,12 +328,18 @@
         </section>
     </main>
 
-    <footer><p>&copy; 2024 M-CUBE Laboratory.</p></footer>
+    <footer><p>© 2024 M-CUBE Laboratory.</p></footer>
 
     <script>
         // 모달 닫기 기능
         function closeModal() {
             document.getElementById('welcome-modal').style.display = 'none';
+        }
+
+        // 모달에서 Contact 링크 클릭 시 팝업 닫고 페이지 이동
+        function goToContact() {
+            closeModal();
+            showPage('contact');
         }
 
         // 페이지 전환 기능
