@@ -28,6 +28,22 @@
         h2 { font-size: 36px; color: #0033cc; margin-bottom: 40px; text-align: center; border-bottom: 3px solid #0033cc; display: inline-block; padding-bottom: 10px; }
         .section-header { text-align: center; margin-bottom: 40px; }
         
+        /* 홈 섹션 메인 텍스트 스타일 (50pt 설정) */
+        .home-display {
+            text-align: center;
+            font-size: 50pt;
+            font-weight: bold;
+            color: #0033cc;
+            line-height: 1.4;
+            word-break: keep-all;
+            padding: 80px 0;
+        }
+        .home-display .sub-text {
+            color: #444;
+            margin-top: 20px;
+            display: block;
+        }
+        
         /* 연구분야 상세 스타일 */
         .research-row { display: flex; align-items: center; gap: 50px; margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid #eee; }
         .research-row.reverse { flex-direction: row-reverse; }
@@ -78,14 +94,10 @@
 
     <main>
         <section id="home" class="page-section active">
-            <div class="section-header">
-                <h2>Welcome to M-CUBE LAB</h2>
-                <p style="font-size: 24px; font-weight: 600; color: #333; margin-top: 25px; margin-bottom: 8px; word-break: keep-all;">
-                    영남대학교 지능형 생산공 연구실
-                </p>
-                <p style="font-size: 18px; color: #0033cc; font-weight: bold; letter-spacing: 0.5px; margin-top: 0;">
-                    [M]echanics [M]anufacturing [M]achine Learning
-                </p>
+            <div class="home-display">
+                영남대학교<br>
+                지능형 생산공 연구실<br>
+                <span class="sub-text">[M]echanics [M]anufacturing [M]achine Learning</span>
             </div>
         </section>
         
@@ -104,7 +116,7 @@
                 <img src="./image/Research 2.jpg" alt="귀 발생 예측" class="research-img">
                 <div class="research-text">
                     <h3>2. 딥드로잉 과정에서 귀 발생 예측 (Prediction of Earing in Deep Drawing)</h3>
-                    <p>판재의 소성 이방성으로 인해 발생하는 딥드로잉 제품의 귀(Earing) 현상을 깊이 있게 연구합니다. 초기 판재의 집합조직 and 이방성 계수를 정밀하게 모델링하고 유한요소해석을 통해 귀 높이를 예측하며, 공정 변수를 최적화하여 불균일한 변형을 최소화하고 균일한 제품 품질을 달성합니다.</p>
+                    <p>판재의 소성 이방성으로 인해 발생하는 딥드로잉 제품의 귀(Earing) 현상을 깊이 있게 연구합니다. 초기 판재의 집합조직과 이방성 계수를 정밀하게 모델링하고 유한요소해석을 통해 귀 높이를 예측하며, 공정 변수를 최적화하여 불균일한 변형을 최소화하고 균일한 제품 품질을 달성합니다.</p>
                     <p class="eng-text">We conduct in-depth research on the earing phenomenon in deep-drawn products caused by the plastic anisotropy of sheet metals. By precisely modeling the initial texture and anisotropy coefficients, we use finite element analysis to predict earing heights and optimize process parameters to minimize uneven deformation and achieve uniform product quality.</p>
                 </div>
             </div>
@@ -155,4 +167,29 @@
             <div class="section-header"><h2>Researchers & Students</h2></div>
             <div class="grid-container">
                 <div class="card"><h3>탁윤학 (Ph.D. Course)</h3><img src="./image/Tak.jpg" style="width:150px; height:180px; object-fit:cover; border-radius:5px; margin:10px 0;"><p>연구분야: 금속재료의 성형성 연구<br>이메일: fastiter37@yu.ac.kr<br>연구실: 자동차관 202호</p></div>
-                <div class="card"><h3>김민수 (B.S. Course)</h3><img src="./image/Kim.jpg" style="width:150px; height:180px; object-fit:cover; border-radius:5px; margin:10px 0;"><p>연구분야: 미세조직내
+                <div class="card"><h3>김민수 (B.S. Course)</h3><img src="./image/Kim.jpg" style="width:150px; height:180px; object-fit:cover; border-radius:5px; margin:10px 0;"><p>연구분야: 미세조직내 상 AI 모델 개발<br>이메일: minsookim@yu.ac.kr<br>연구실: 자동차관 202호</p></div>
+                <div class="card"><h3>복진혁 (B.S. Course)</h3><img src="./image/Bok.jpg" style="width:150px; height:180px; object-fit:cover; border-radius:5px; margin:10px 0;"><p>연구분야: 금속재료의 성형성 연구<br>이메일: bokjh03@yu.ac.kr<br>연구실: 자동차관 202호</p></div>
+                <div class="card"><h3>박찬호 (B.S. Course)</h3><img src="./image/Park.jpg" style="width:150px; height:180px; object-fit:cover; border-radius:5px; margin:10px 0;"><p>연구분야: 금속재료의 성형성 연구<br>이메일: GRssalMeongi90@yu.ac.kr<br>연구실: 자동차관 202호</p></div>
+            </div>
+        </section>
+
+        <section id="projects" class="page-section"><div class="section-header"><h2>Projects</h2></div></section>
+        <section id="publications" class="page-section"><div class="section-header"><h2>Publications</h2></div></section>
+        <section id="gallery" class="page-section"><div class="section-header"><h2>Gallery</h2></div></section>
+        <section id="contact" class="page-section"><div class="section-header"><h2>Contact</h2></div></section>
+    </main>
+
+    <footer><p>&copy; 2024 M-CUBE Laboratory.</p></footer>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('nav-active'));
+            if(pageId === 'professor' || pageId === 'students') document.getElementById('link-members').classList.add('nav-active');
+            else document.getElementById('link-' + pageId)?.classList.add('nav-active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
