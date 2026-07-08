@@ -74,54 +74,48 @@
         .m-blue { color: #0033cc; }
         
         /* -------------------------------------------
-           슬라이드 2 (오른쪽 그룹 높이 동기화 레이아웃)
+           슬라이드 2 (높이 동일화 적용)
         ------------------------------------------- */
         .slide-split-layout { 
-            display: flex; /* Grid 대신 Flex로 변경하여 독립적 제어 */
+            display: grid; 
+            grid-template-columns: 1fr 1.1fr 1fr; 
             width: 100%; 
             max-width: 1300px; 
             margin: 0 auto; 
             padding: 30px 40px; 
             gap: 30px; 
-            align-items: start; /* 가장 긴 왼쪽 박스에 강제로 맞춰지지 않도록 설정 */
+            align-items: stretch; /* 내용물이 적어도 전체 상자에 맞춰 상하 길이를 동일하게 늘림 */
         }
         
         /* 1. 왼쪽: Research Topics */
         .slide-left { 
-            flex: 1;
             background: rgba(255, 255, 255, 0.95); 
             padding: 30px; 
             border-radius: 20px; 
             box-shadow: 0 8px 30px rgba(0,0,0,0.08); 
+            height: 100%; /* 부모 그리드 높이에 맞춤 */
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
         } 
         .slide-left h2 { font-size: 28px; color: #0033cc; border-bottom: 3px solid #0033cc; padding-bottom: 8px; margin-top: 0; text-align: left; display: inline-block; margin-bottom: 25px; } 
-        .topic-list { list-style: none; padding: 0; margin: 0; }
+        .topic-list { list-style: none; padding: 0; margin: 0; flex: 1; }
         .topic-list li { margin-bottom: 18px; padding-bottom: 15px; border-bottom: 1px solid #eaeaea; } 
         .topic-list li:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
         .topic-kor { display: block; font-size: 18px; font-weight: bold; color: #333; margin-bottom: 4px; } 
         .topic-eng { display: block; font-size: 13px; color: #777; font-style: italic; } 
         
-        /* 중앙(Projects)과 오른쪽(Gallery)을 묶어 높이를 동기화하는 래퍼 */
-        .slide-right-group {
-            flex: 2.1; /* 1.1 + 1 비율 */
-            display: flex;
-            gap: 30px;
-            align-items: stretch; /* Projects 박스와 Gallery 박스가 서로 같은 높이를 가짐 */
-        }
-
-        /* 2. 중앙 */
+        /* 2. 중앙 & 3. 오른쪽 공통 */
         .slide-center { 
-            flex: 1.1;
             display: flex; 
             flex-direction: column; 
             gap: 20px; 
+            height: 100%; 
         } 
-        /* 3. 오른쪽 */
         .slide-right { 
-            flex: 1;
             display: flex; 
             flex-direction: column; 
+            height: 100%; 
         }
 
         .preview-list-card { 
@@ -131,17 +125,14 @@
             box-shadow: 0 8px 30px rgba(0,0,0,0.08); 
             cursor: pointer; 
             transition: all 0.3s ease; 
+            flex: 1; /* 여백을 공평하게 나누어 상하 공간을 채움 */
             display: flex; 
             flex-direction: column; 
             border: 1px solid transparent;
             box-sizing: border-box;
         }
-        
-        /* 오른쪽 갤러리 카드는 늘어난 부모(slide-right) 높이에 꽉 차게 설정 */
-        .slide-right .preview-list-card { 
-            height: 100%; 
-            justify-content: center; 
-        }
+        /* 우측 갤러리 카드의 콘텐츠를 세로 중앙에 배치 */
+        .slide-right .preview-list-card { justify-content: center; }
 
         .preview-list-card:hover { 
             transform: translateY(-5px); 
@@ -192,7 +183,7 @@
         }
         .mini-gallery-list img { 
             width: 100%; 
-            height: 140px; 
+            height: 140px; /* 고정 높이 유지 */
             max-height: 140px; 
             object-fit: cover; 
             border-radius: 8px; 
@@ -361,67 +352,67 @@
                         </ul>
                     </div>
 
-                    <div class="slide-right-group">
-                        <div class="slide-center">
-                            <div class="preview-list-card" onclick="showPage('projects')">
-                                <h3>⚙️ Projects</h3>
-                                <ul class="mini-list">
-                                    <li><div>AI-기반 자동화 결함 탐지 시스템 (YOLOv5-seg)</div></li>
-                                    <li><div>금속 미세조직 시맨틱 세그먼테이션 (U-Net)</div></li>
-                                    <li><div>로봇 파지(Grasping) 강화학습 제어 시뮬레이션</div></li>
-                                    <li><div>스마트 교육센터 ChatGPT 활용학습연구</div></li>
-                                </ul>
-                            </div>
-                            
-                            <div class="preview-list-card" onclick="showPage('publications')">
-                                <h3>📄 Publications</h3>
-                                <ul class="mini-list">
-                                    <li><div>딥드로잉 공정의 귀(Earing) 발생 예측 연구<span class="date-badge">2026</span></div></li>
-                                    <li><div>AI 기반 금속재료 스프링백 보정 알고리즘<span class="date-badge">2025</span></div></li>
-                                    <li><div>초고장력 강판의 성형한계선도(FLD) 평가<span class="date-badge">2025</span></div></li>
-                                    <li><div>소성가공 부품의 잔류응력 및 피로수명 분석<span class="date-badge">2024</span></div></li>
-                                </ul>
-                            </div>
+                    <div class="slide-center">
+                        <div class="preview-list-card" onclick="showPage('projects')">
+                            <h3>⚙️ Projects</h3>
+                            <ul class="mini-list">
+                                <li><div>AI-기반 자동화 결함 탐지 시스템 (YOLOv5-seg)</div></li>
+                                <li><div>금속 미세조직 시맨틱 세그먼테이션 (U-Net)</div></li>
+                                <li><div>로봇 파지(Grasping) 강화학습 제어 시뮬레이션</div></li>
+                                <li><div>스마트 교육센터 ChatGPT 활용학습연구</div></li>
+                            </ul>
                         </div>
+                        
+                        <div class="preview-list-card" onclick="showPage('publications')">
+                            <h3>📄 Publications</h3>
+                            <ul class="mini-list">
+                                <li><div>딥드로잉 공정의 귀(Earing) 발생 예측 연구<span class="date-badge">2026</span></div></li>
+                                <li><div>AI 기반 금속재료 스프링백 보정 알고리즘<span class="date-badge">2025</span></div></li>
+                                <li><div>초고장력 강판의 성형한계선도(FLD) 평가<span class="date-badge">2025</span></div></li>
+                                <li><div>소성가공 부품의 잔류응력 및 피로수명 분석<span class="date-badge">2024</span></div></li>
+                            </ul>
+                        </div>
+                    </div>
 
-                        <div class="slide-right">
-                            <div class="preview-list-card" onclick="showPage('gallery')">
-                                <h3>🖼️ Gallery</h3>
-                                
-                                <ul class="mini-gallery-list">
-                                    <li>
-                                        <img src="./image/Gallery7.jpg" alt="Gallery">
-                                        <div class="mini-text-box">
-                                            <span class="title">2026년 대한기계학회 대경지회 학술대회</span>
-                                            <span class="date-badge">2026.06.26</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <img src="./image/Gallery6.jpg" alt="Gallery">
-                                        <div class="mini-text-box">
-                                            <span class="title">2026년 스승의 날</span>
-                                            <span class="date-badge">2026.05.15</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <img src="./image/Gallery5.jpg" alt="Gallery">
-                                        <div class="mini-text-box">
-                                            <span class="title">2025학년도 제 75회 전기 학위수여식</span>
-                                            <span class="date-badge">2026.02.20</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <img src="./image/Gallery4.jpg" alt="Gallery">
-                                        <div class="mini-text-box">
-                                            <span class="title">한국소성가공학회 추계학술대회</span>
-                                            <span class="date-badge">2025.11.05~07</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                                
-                            </div>
+                    <div class="slide-right">
+                        <div class="preview-list-card" onclick="showPage('gallery')">
+                            <h3>🖼️ Gallery</h3>
+                            
+                            <ul class="mini-gallery-list">
+                                <li>
+                                    <img src="./image/Gallery7.jpg" alt="Gallery">
+                                    <div class="mini-text-box">
+                                        <span class="title">2026년 대한기계학회 대경지회 학술대회</span>
+                                        <span class="date-badge">2026.06.26</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <img src="./image/Gallery6.jpg" alt="Gallery">
+                                    <div class="mini-text-box">
+                                        <span class="title">2026년 스승의 날</span>
+                                        <span class="date-badge">2026.05.15</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <img src="./image/Gallery5.jpg" alt="Gallery">
+                                    <div class="mini-text-box">
+                                        <span class="title">2025학년도 제 75회 전기 학위수여식</span>
+                                        <span class="date-badge">2026.02.20</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <img src="./image/Gallery4.jpg" alt="Gallery">
+                                    <div class="mini-text-box">
+                                        <span class="title">한국소성가공학회 추계학술대회</span>
+                                        <span class="date-badge">2025.11.05~07</span>
+                                    </div>
+                                </li>
+                            </ul>
+                            
                         </div>
-                    </div> </div>
+                    </div>
+
+                </div>
             </div>
 
         </section>
@@ -482,7 +473,7 @@
                     <p style="font-size: 20px;">영남대학교 미래자동차공학과 조교수</p>
                     <div class="info-group"><h3>학력 사항</h3><ul><li>2015.03 금오공과대학교 공학사</li><li>2017.03 경북대학교 공학석사</li><li>2022.03 경북대학교 공학박사</li></ul></div>
                     <div class="info-group"><h3>경력 사항</h3><ul><li>2022.07~2024.02 UNH Post Doc.</li><li>2024.03~현재 영남대 조교수</li></ul></div>
-                    <div class="info-group"><h3>학회/학술활동</h3><p>국-내외 학회지 18편 게재</p><a href="https://drive.google.com/drive/folders/1_9ENCA40UtqU_s7E2d-1zSFEf_sjlVJO" target="_blank" class="scholar-link">Google Scholar 바로가기</a></div>
+                    <div class="info-group"><h3>학회/학술활동</h3><p>국-내외 학회지 18편 게재</p><a href="[https://drive.google.com/drive/folders/1_9ENCA40UtqU_s7E2d-1zSFEf_sjlVJO](https://drive.google.com/drive/folders/1_9ENCA40UtqU_s7E2d-1zSFEf_sjlVJO)" target="_blank" class="scholar-link">Google Scholar 바로가기</a></div>
                 </div>
             </div>
         </section>
@@ -550,7 +541,7 @@
                     </div>
                 </div>
                 <div class="map-container">
-                    <iframe src="https://maps.google.com/maps?q=영남대학교%20자동차관&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="400" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://maps.google.com/maps?q=영남대학교%20자동차관&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="400" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="address-box">
                     <div class="address-item">
