@@ -28,13 +28,8 @@
         h2 { font-size: 36px; color: #0033cc; margin-bottom: 40px; text-align: center; border-bottom: 3px solid #0033cc; display: inline-block; padding-bottom: 10px; }
         .section-header { text-align: center; margin-bottom: 40px; }
         
-        /* -------------------------------------------
-           홈 섹션 PPT 슬라이드(Scroll Snap) 스타일 
-        ------------------------------------------- */
-        #home {
-            padding: 0 !important;
-        }
-        
+        /* 홈 섹션 PPT 슬라이드(Scroll Snap) 스타일 */
+        #home { padding: 0 !important; }
         #home.active {
             display: block;
             height: calc(100vh - 90px); 
@@ -44,7 +39,6 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-        
         #home::-webkit-scrollbar { display: none; }
 
         .home-slide {
@@ -64,7 +58,6 @@
         #slide-1 { background-image: url('./image/background.jpg'); }
         #slide-2 { background-color: #f4f6f9; }
 
-        /* 슬라이드 1 메인 텍스트 */
         .home-display {
             text-align: center;
             font-size: 50pt;
@@ -80,12 +73,10 @@
         .home-display .sub-text { color: #555; margin-top: 20px; display: block; }
         .m-blue { color: #0033cc; }
         
-        /* -------------------------------------------
-           슬라이드 2 (3단 레이아웃 개편)
-        ------------------------------------------- */
+        /* 슬라이드 2 (3단 레이아웃 개편) */
         .slide-split-layout { 
             display: grid; 
-            grid-template-columns: 1.1fr 1fr 1fr; /* 왼쪽 주제 영역을 살짝 더 넓게 */
+            grid-template-columns: 1.1fr 1fr 1fr; 
             width: 100%; 
             max-width: 1400px; 
             margin: 0 auto; 
@@ -103,13 +94,9 @@
         .topic-kor { display: block; font-size: 19px; font-weight: bold; color: #333; margin-bottom: 5px; }
         .topic-eng { display: block; font-size: 14px; color: #777; font-style: italic; }
         
-        /* 2. 중앙: Projects & Publications */
-        .slide-center { display: flex; flex-direction: column; gap: 30px; }
-        
-        /* 3. 오른쪽: Gallery */
-        .slide-right { display: flex; flex-direction: column; }
+        /* 2. 중앙 & 3. 오른쪽 공통 */
+        .slide-center, .slide-right { display: flex; flex-direction: column; gap: 30px; }
 
-        /* 미리보기 카드 공통 스타일 */
         .preview-list-card { 
             background: rgba(255, 255, 255, 0.95); 
             padding: 30px; 
@@ -154,22 +141,14 @@
         .mini-list li:last-child { margin-bottom: 0; }
         .date-badge { font-size: 12px; color: #999; display: block; margin-top: 2px; }
 
-        /* 갤러리 미니 썸네일 그리드 */
-        .mini-gallery-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .mini-thumb {
-            height: 80px;
-            border-radius: 8px;
-            background-size: cover;
-            background-position: center;
-            border: 1px solid #eee;
-        }
+        /* 갤러리 미니 리스트 (이미지+텍스트 결합) */
+        .mini-gallery-list { list-style: none; padding: 0; margin: 0; text-align: left; display: flex; flex-direction: column; gap: 15px; }
+        .mini-gallery-list li { display: flex; align-items: center; gap: 15px; }
+        .mini-gallery-list img { width: 80px; height: 60px; object-fit: cover; border-radius: 6px; border: 1px solid #eee; flex-shrink: 0; }
+        .mini-gallery-list .mini-text-box { display: flex; flex-direction: column; flex: 1; }
+        .mini-gallery-list .title { font-size: 14px; color: #333; line-height: 1.3; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-        /* 기타 섹션 스타일 */
+        /* 모달 및 기타 공통 스타일 */
         .modal-overlay { display: flex; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); justify-content: center; align-items: center; animation: fadeInModal 0.6s ease-out; }
         .modal-content { background-color: #ffffff; padding: 50px 40px; border-radius: 12px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; max-width: 550px; width: 80%; }
         .modal-content h3 { margin: 0 0 20px 0; font-size: 28px; color: #0033cc; }
@@ -301,26 +280,11 @@
                     <div class="slide-left">
                         <h2>Research Topics</h2>
                         <ul class="topic-list">
-                            <li>
-                                <span class="topic-kor">소성가공</span>
-                                <span class="topic-eng">Plastic Forming</span>
-                            </li>
-                            <li>
-                                <span class="topic-kor">박판 성형해석</span>
-                                <span class="topic-eng">Sheet Metal Forming Analysis</span>
-                            </li>
-                            <li>
-                                <span class="topic-kor">탄∙소성 재료의 구성방정식 개발</span>
-                                <span class="topic-eng">Development of Constitutive Equations for Elasto-Plastic Materials</span>
-                            </li>
-                            <li>
-                                <span class="topic-kor">스마트팩토리</span>
-                                <span class="topic-eng">Smart Factory</span>
-                            </li>
-                            <li>
-                                <span class="topic-kor">AI 소성가공 공정 설계</span>
-                                <span class="topic-eng">AI-based Plastic Forming Process Design</span>
-                            </li>
+                            <li><span class="topic-kor">소성가공</span><span class="topic-eng">Plastic Forming</span></li>
+                            <li><span class="topic-kor">박판 성형해석</span><span class="topic-eng">Sheet Metal Forming Analysis</span></li>
+                            <li><span class="topic-kor">탄∙소성 재료의 구성방정식 개발</span><span class="topic-eng">Development of Constitutive Equations for Elastic-Plastic Materials</span></li>
+                            <li><span class="topic-kor">스마트팩토리</span><span class="topic-eng">Smart Factory</span></li>
+                            <li><span class="topic-kor">AI 소성가공 공정 설계</span><span class="topic-eng">AI-based Plastic Forming Process Design</span></li>
                         </ul>
                     </div>
 
@@ -328,56 +292,20 @@
                         <div class="preview-list-card" onclick="showPage('projects')">
                             <h3>⚙️ Projects</h3>
                             <ul class="mini-list">
-                                <li>
-                                    <div>
-                                        AI-기반 자동화 결함 탐지 시스템 (YOLOv5-seg)
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        금속 미세조직 시맨틱 세그먼테이션 (U-Net)
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        로봇 파지(Grasping) 강화학습 제어 시뮬레이션
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        스마트 교육센터 ChatGPT 활용학습연구
-                                    </div>
-                                </li>
+                                <li><div>AI-기반 자동화 결함 탐지 시스템 (YOLOv5-seg)</div></li>
+                                <li><div>금속 미세조직 시맨틱 세그먼테이션 (U-Net)</div></li>
+                                <li><div>로봇 파지(Grasping) 강화학습 제어 시뮬레이션</div></li>
+                                <li><div>스마트 교육센터 ChatGPT 활용학습연구</div></li>
                             </ul>
                         </div>
                         
                         <div class="preview-list-card" onclick="showPage('publications')">
                             <h3>📄 Publications</h3>
                             <ul class="mini-list">
-                                <li>
-                                    <div>
-                                        딥드로잉 공정의 귀(Earing) 발생 예측 연구
-                                        <span class="date-badge">2026</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        AI 기반 금속재료 스프링백 보정 알고리즘
-                                        <span class="date-badge">2025</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        초고장력 강판의 성형한계선도(FLD) 평가
-                                        <span class="date-badge">2025</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        소성가공 부품의 잔류응력 및 피로수명 분석
-                                        <span class="date-badge">2024</span>
-                                    </div>
-                                </li>
+                                <li><div>딥드로잉 공정의 귀(Earing) 발생 예측 연구<span class="date-badge">2026</span></div></li>
+                                <li><div>AI 기반 금속재료 스프링백 보정 알고리즘<span class="date-badge">2025</span></div></li>
+                                <li><div>초고장력 강판의 성형한계선도(FLD) 평가<span class="date-badge">2025</span></div></li>
+                                <li><div>소성가공 부품의 잔류응력 및 피로수명 분석<span class="date-badge">2024</span></div></li>
                             </ul>
                         </div>
                     </div>
@@ -386,39 +314,37 @@
                         <div class="preview-list-card" onclick="showPage('gallery')" style="height: 100%;">
                             <h3>🖼️ Gallery</h3>
                             
-                            <div class="mini-gallery-grid">
-                                <div class="mini-thumb" style="background-image: url('./image/Gallery7.jpg');"></div>
-                                <div class="mini-thumb" style="background-image: url('./image/Gallery6.jpg');"></div>
-                                <div class="mini-thumb" style="background-image: url('./image/Gallery5.jpg');"></div>
-                                <div class="mini-thumb" style="background-image: url('./image/Gallery4.jpg');"></div>
-                            </div>
-
-                            <ul class="mini-list">
+                            <ul class="mini-gallery-list">
                                 <li>
-                                    <div>
-                                        2026년 대한기계학회 대경지회 학술대회
+                                    <img src="./image/Gallery7.jpg" alt="Gallery">
+                                    <div class="mini-text-box">
+                                        <span class="title">2026년 대한기계학회 대경지회 학술대회</span>
                                         <span class="date-badge">2026.06.26</span>
                                     </div>
                                 </li>
                                 <li>
-                                    <div>
-                                        2026년 스승의 날
+                                    <img src="./image/Gallery6.jpg" alt="Gallery">
+                                    <div class="mini-text-box">
+                                        <span class="title">2026년 스승의 날</span>
                                         <span class="date-badge">2026.05.15</span>
                                     </div>
                                 </li>
                                 <li>
-                                    <div>
-                                        2025학년도 제 75회 전기 학위수여식
+                                    <img src="./image/Gallery5.jpg" alt="Gallery">
+                                    <div class="mini-text-box">
+                                        <span class="title">2025학년도 제 75회 전기 학위수여식</span>
                                         <span class="date-badge">2026.02.20</span>
                                     </div>
                                 </li>
                                 <li>
-                                    <div>
-                                        한국소성가공학회 추계학술대회
+                                    <img src="./image/Gallery4.jpg" alt="Gallery">
+                                    <div class="mini-text-box">
+                                        <span class="title">한국소성가공학회 추계학술대회</span>
                                         <span class="date-badge">2025.11.05~07</span>
                                     </div>
                                 </li>
                             </ul>
+                            
                         </div>
                     </div>
 
@@ -429,7 +355,6 @@
         
         <section id="research" class="page-section">
             <div class="section-header"><h2>Research</h2></div>
-            
             <div class="research-row">
                 <img src="./image/Research 1.jpg" alt="성형한계선도" class="research-img">
                 <div class="research-text">
@@ -480,7 +405,7 @@
                     <div class="info-group" style="margin-top: 20px;"><h3>Contact</h3><p>📞 053-810-3009<br>🏠 자동차관 201호<br>📧 JinJae.Kim@yu.ac.kr</p></div>
                 </div>
                 <div style="flex: 1;">
-                    <h1>김진재 (Jin-Jae Kim)</h1>
+                    <h1>김진재 (Jinjae Kim)</h1>
                     <p style="font-size: 20px;">영남대학교 미래자동차공학과 조교수</p>
                     <div class="info-group"><h3>학력 사항</h3><ul><li>2015.03 금오공과대학교 공학사</li><li>2017.03 경북대학교 공학석사</li><li>2022.03 경북대학교 공학박사</li></ul></div>
                     <div class="info-group"><h3>경력 사항</h3><ul><li>2022.07~2024.02 UNH Post Doc.</li><li>2024.03~현재 영남대 조교수</li></ul></div>
