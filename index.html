@@ -218,7 +218,9 @@
         .research-text .eng-text { font-size: 16px; color: #777; font-style: italic; margin-top: 10px; }
 
         .grid-container { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; }
-        .card { background: #f8f9fa; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); width: 280px; text-align: center; }
+        .card { background: #f8f9fa; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); width: 280px; text-align: left; }
+        .card h3 { color: #0033cc; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 15px; text-align: center; }
+        .card p { font-size: 14px; margin-bottom: 5px; }
         
         .prof-layout { display: flex; gap: 50px; max-width: 1000px; margin: 0 auto; align-items: flex-start; flex-wrap: wrap; }
         .prof-photo { width: 300px; height: 350px; object-fit: cover; border-radius: 10px; }
@@ -454,16 +456,21 @@
         <section id="students" class="page-section">
             <div class="section-header"><h2>Researchers & Students</h2></div>
             <div class="grid-container">
-                <div class="card"><h3>탁윤학 (Ph.D. Course)</h3><img src="./image/Tak.jpg" style="width:150px; height:180px; object-fit:cover; border-radius:5px; margin:10px 0;"><p>연구분야: 금속재료의 성형성 연구<br>이메일: fastiter37@yu.ac.kr<br>연구실: 자동차관 202호</p></div>
-                <div class="card"><h3>김민수 (B.S. Course)</h3><img src="./image/Kim.jpg" style="width:150px; height:180px; object-fit:cover; border-radius:5px; margin:10px 0;"><p>연구분야: 미세조직내 상 AI 모델 개발<br>이메일: minsookim@yu.ac.kr<br>연구실: 자동차관 202호</p></div>
-                <div class="card"><h3>복진혁 (B.S. Course)</h3><img src="./image/Bok.jpg" style="width:150px; height:180px; object-fit:cover; border-radius:5px; margin:10px 0;"><p>연구분야: 금속재료의 성형성 연구<br>이메일: bokjh03@yu.ac.kr<br>연구실: 자동차관 202호</p></div>
-                <div class="card"><h3>박찬호 (B.S. Course)</h3><img src="./image/Park.jpg" style="width:150px; height:180px; object-fit:cover; border-radius:5px; margin:10px 0;"><p>연구분야: 금속재료의 성형성 연구<br>이메일: GRssalMeongi90@yu.ac.kr<br>연구실: 자동차관 202호</p></div>
+                <div class="card"><h3>탁윤학 (Ph.D. Course)</h3><p>연구분야: 금속재료의 성형성 연구<br>이메일: fastiter37@yu.ac.kr<br>연구실: 자동차관 202호</p></div>
+                <div class="card"><h3>김민수 (B.S. Course)</h3><p>연구분야: 미세조직내 상 AI 모델 개발<br>이메일: minsookim@yu.ac.kr<br>연구실: 자동차관 202호</p></div>
+                <div class="card"><h3>복진혁 (B.S. Course)</h3><p>연구분야: 금속재료의 성형성 연구<br>이메일: bokjh03@yu.ac.kr<br>연구실: 자동차관 202호</p></div>
+                <div class="card"><h3>박찬호 (B.S. Course)</h3><p>연구분야: 금속재료의 성형성 연구<br>이메일: GRssalMeongi90@yu.ac.kr<br>연구실: 자동차관 202호</p></div>
             </div>
         </section>
 
         <section id="alumni" class="page-section">
             <div class="section-header"><h2>Alumni</h2></div>
-            <p style="text-align: center;">M-CUBE LAB을 빛낸 졸업생들을 소개합니다.</p>
+            <div class="grid-container">
+                <div class="card"><h3>김부민 (B.S. Course)</h3><p>졸업일자: 2026.02<br>Thesis: -<br>Affiliation: Graduate School of Korea University</p></div>
+                <div class="card"><h3>김영준 (B.S. Course)</h3><p>졸업일자: 2026.02<br>Thesis: -<br>Affiliation: Ajin Industrial Co., Ltd. (Intern)</p></div>
+                <div class="card"><h3>백정웅 (B.S. Course)</h3><p>졸업일자: 2026.02<br>Thesis: -<br>Affiliation: KITECH (Korea Institute of Industrial Technology)</p></div>
+                <div class="card"><h3>정의찬 (B.S. Course)</h3><p>졸업일자: 2026.02<br>Thesis: -<br>Affiliation: Seoyon E-Hwa (Intern)</p></div>
+            </div>
         </section>
 
         <section id="projects" class="page-section"><div class="section-header"><h2>Projects</h2></div></section>
@@ -487,18 +494,6 @@
                 <div class="gallery-card">
                     <img src="./image/Gallery4.jpg" alt="한국소성가공학회 추계학술대회" class="gallery-img" onclick="openImage(this.src)">
                     <div class="gallery-info"><h3>한국소성가공학회 추계학술대회</h3><div class="gallery-date">2025.11.05~07</div></div>
-                </div>
-                <div class="gallery-card">
-                    <img src="./image/Gallery3.jpg" alt="2025년 대한기계학회 대경지회 학술대회" class="gallery-img" onclick="openImage(this.src)">
-                    <div class="gallery-info"><h3>2025년 대한기계학회 대경지회 학술대회</h3><div class="gallery-date">2025.07.28</div></div>
-                </div>
-                <div class="gallery-card">
-                    <img src="./image/Gallery2.jpg" alt="(주) 화신정공 방문" class="gallery-img" onclick="openImage(this.src)">
-                    <div class="gallery-info"><h3>(주) 화신정공 방문</h3><div class="gallery-date">2025.01.15</div></div>
-                </div>
-                <div class="gallery-card">
-                    <img src="./image/Gallery1.jpg" alt="현대자동차 남양연구소 방문" class="gallery-img" onclick="openImage(this.src)">
-                    <div class="gallery-info"><h3>현대자동차 남양연구소 방문</h3><div class="gallery-date">2024.08.07</div></div>
                 </div>
             </div>
         </section>
