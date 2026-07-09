@@ -28,7 +28,6 @@
         h2 { font-size: 36px; color: #0033cc; margin-bottom: 40px; text-align: center; border-bottom: 3px solid #0033cc; display: inline-block; padding-bottom: 10px; }
         .section-header { text-align: center; margin-bottom: 40px; }
         
-        /* 홈 섹션 PPT 슬라이드(Scroll Snap) 스타일 */
         #home { padding: 0 !important; }
         #home.active {
             display: block;
@@ -73,9 +72,6 @@
         .home-display .sub-text { color: #555; margin-top: 20px; display: block; }
         .m-blue { color: #0033cc; }
         
-        /* -------------------------------------------
-           슬라이드 2 (높이 동일화 적용)
-        ------------------------------------------- */
         .slide-split-layout { 
             display: grid; 
             grid-template-columns: 1fr 1.1fr 1fr; 
@@ -84,16 +80,15 @@
             margin: 0 auto; 
             padding: 30px 40px; 
             gap: 30px; 
-            align-items: stretch; /* 내용물이 적어도 전체 상자에 맞춰 상하 길이를 동일하게 늘림 */
+            align-items: stretch;
         }
         
-        /* 1. 왼쪽: Research Topics */
         .slide-left { 
             background: rgba(255, 255, 255, 0.95); 
             padding: 30px; 
             border-radius: 20px; 
             box-shadow: 0 8px 30px rgba(0,0,0,0.08); 
-            height: 100%; /* 부모 그리드 높이에 맞춤 */
+            height: 100%; 
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
@@ -105,18 +100,8 @@
         .topic-kor { display: block; font-size: 18px; font-weight: bold; color: #333; margin-bottom: 4px; } 
         .topic-eng { display: block; font-size: 13px; color: #777; font-style: italic; } 
         
-        /* 2. 중앙 & 3. 오른쪽 공통 */
-        .slide-center { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 20px; 
-            height: 100%; 
-        } 
-        .slide-right { 
-            display: flex; 
-            flex-direction: column; 
-            height: 100%; 
-        }
+        .slide-center { display: flex; flex-direction: column; gap: 20px; height: 100%; } 
+        .slide-right { display: flex; flex-direction: column; height: 100%; }
 
         .preview-list-card { 
             background: rgba(255, 255, 255, 0.95); 
@@ -125,13 +110,12 @@
             box-shadow: 0 8px 30px rgba(0,0,0,0.08); 
             cursor: pointer; 
             transition: all 0.3s ease; 
-            flex: 1; /* 여백을 공평하게 나누어 상하 공간을 채움 */
+            flex: 1; 
             display: flex; 
             flex-direction: column; 
             border: 1px solid transparent;
             box-sizing: border-box;
         }
-        /* 우측 갤러리 카드의 콘텐츠를 세로 중앙에 배치 */
         .slide-right .preview-list-card { justify-content: center; }
 
         .preview-list-card:hover { 
@@ -151,7 +135,6 @@
             gap: 10px; 
         }
         
-        /* 리스트 텍스트 스타일 (중앙 영역) */
         .mini-list { list-style: none; padding: 0; margin: 0; text-align: left; }
         .mini-list li { 
             font-size: 15px; 
@@ -166,7 +149,6 @@
         .mini-list li:last-child { margin-bottom: 0; }
         .date-badge { font-size: 12px; color: #999; display: block; margin-top: 3px; } 
 
-        /* 갤러리 미니 리스트 */
         .mini-gallery-list { 
             list-style: none; 
             padding: 0; 
@@ -176,14 +158,10 @@
             grid-template-rows: auto auto; 
             gap: 15px; 
         }
-        .mini-gallery-list li { 
-            display: flex; 
-            flex-direction: column; 
-            width: 100%; 
-        }
+        .mini-gallery-list li { display: flex; flex-direction: column; width: 100%; }
         .mini-gallery-list img { 
             width: 100%; 
-            height: 140px; /* 고정 높이 유지 */
+            height: 140px; 
             max-height: 140px; 
             object-fit: cover; 
             border-radius: 8px; 
@@ -213,7 +191,6 @@
             font-weight: 600;
         }
 
-        /* 모달 및 기타 공통 스타일 */
         .modal-overlay { display: flex; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); justify-content: center; align-items: center; animation: fadeInModal 0.6s ease-out; }
         .modal-content { background-color: #ffffff; padding: 50px 40px; border-radius: 12px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; max-width: 550px; width: 80%; }
         .modal-content h3 { margin: 0 0 20px 0; font-size: 28px; color: #0033cc; }
@@ -310,6 +287,7 @@
                     <div class="dropdown-content">
                         <a onclick="showPage('professor')">Professor</a>
                         <a onclick="showPage('students')">Researchers & Students</a>
+                        <a onclick="showPage('alumni')">Alumni</a>
                     </div>
                 </li>
                 <li><a onclick="showPage('projects')" id="link-projects" class="nav-item">Projects</a></li>
@@ -346,7 +324,7 @@
                         <ul class="topic-list">
                             <li><span class="topic-kor">소성가공</span><span class="topic-eng">Plastic Forming</span></li>
                             <li><span class="topic-kor">박판 성형해석</span><span class="topic-eng">Sheet Metal Forming Analysis</span></li>
-                            <li><span class="topic-kor">탄∙소성 재료의 구성방정식 개발</span><span class="topic-eng">Development of Constitutive Equations for Elastic-Plastic Materials</span></li>
+                            <li><span class="topic-kor">탄∙소성 재료의 구성방정식 개발</span><span class="topic-eng">Development of Constitutive Equations for Elasto-Plastic Materials</span></li>
                             <li><span class="topic-kor">스마트팩토리</span><span class="topic-eng">Smart Factory</span></li>
                             <li><span class="topic-kor">AI 소성가공 공정 설계</span><span class="topic-eng">AI-based Plastic Forming Process Design</span></li>
                         </ul>
@@ -424,7 +402,6 @@
                 <div class="research-text">
                     <h3>1. 금속재료의 성형한계선도 (Forming Limit Diagram, FLD)</h3>
                     <p>재료의 변형 한계를 결정하는 성형한계선도를 이론적·실험적으로 분석합니다. 실제 프레스 성형 공정 중 발생하는 국부 네킹(Necking) 및 파단(Fracture)을 사전에 예측함으로써 제품의 형상 정밀도와 구조적 안전성을 확보하고, 재료의 소성 가공 한계를 극대화하는 연구를 수행합니다.</p>
-                    <p class="eng-text">We analyze the Forming Limit Diagram (FLD) that determines the deformation limits of materials through theoretical and experimental approaches. By predicting local necking and fracture during the press forming process, we secure product shape precision, structural integrity, and maximize the material's plastic processing limit.</p>
                 </div>
             </div>
             <div class="research-row reverse">
@@ -432,7 +409,6 @@
                 <div class="research-text">
                     <h3>2. 딥드로잉 과정에서 귀 발생 예측 (Prediction of Earing in Deep Drawing)</h3>
                     <p>판재의 소성 이방성으로 인해 발생하는 딥드로잉 제품의 귀(Earing) 현상을 깊이 있게 연구합니다. 초기 판재의 집합조직과 이방성 계수를 정밀하게 모델링하고 유한요소해석을 단행하여 귀 높이를 예측하며, 공정 변수를 최적화하여 불균일한 변형을 최소화하고 균일한 제품 품질을 달성합니다.</p>
-                    <p class="eng-text">We conduct in-depth research on the earing phenomenon in deep-drawn products caused by the plastic anisotropy of sheet metals. By precisely modeling the initial texture and anisotropy coefficients, we use finite element analysis to predict earing heights and optimize process parameters to minimize uneven deformation and achieve uniform product quality.</p>
                 </div>
             </div>
             <div class="research-row">
@@ -440,7 +416,6 @@
                 <div class="research-text">
                     <h3>3. 금속재료의 스프링백 예측 (Prediction of Springback in Metal Forming)</h3>
                     <p>성형 공정 후 하중 제거 시 발생하는 탄성 복원 현상인 스프링백을 예측하고 능동적으로 보정합니다. 고차 항복 함수와 복합 경화 법칙을 결합한 해석 기술을 통해 금형 수정 비용을 혁신적으로 절감하며, 자동차의 외판 부품과 같은 고정밀 기계 요소의 치수 정확도를 보장하는 핵심 기술을 개발합니다.</p>
-                    <p class="eng-text">We predict and actively compensate for springback, the elastic recovery that occurs upon load removal after the forming process. Through advanced analysis techniques integrating high-order yield functions and combined hardening laws, we dramatically reduce die correction costs and develop essential technologies ensuring dimensional accuracy for high-precision automotive outer panels.</p>
                 </div>
             </div>
             <div class="research-row reverse">
@@ -448,7 +423,6 @@
                 <div class="research-text">
                     <h3>4. 소성가공 제품의 피로 파괴 해석 (Fatigue Failure Analysis)</h3>
                     <p>성형 변형을 거친 제품이 장기 사용 시 반복 하중을 받을 때 나타나는 피로 파괴 거동을 종합적으로 연구합니다. 가공 이력에 따른 가공 경화와 잔류 응력 분포가 피로 수명에 미치는 정량적 영향을 평가하며, 극한 환경에서도 구조적 안정성을 유지할 수 있도록 내구 수명 최적화 설계를 위한 방법론을 제시합니다.</p>
-                    <p class="eng-text">We comprehensively study the fatigue failure behavior of components that have undergone plastic deformation under cyclic loading over long-term usage. By evaluating the quantitative impacts of processing history, such as work hardening and residual stress distribution, on fatigue life, we provide methodology for durable lifetime optimization design to maintain structural stability in extreme environments.</p>
                 </div>
             </div>
             <div class="research-row">
@@ -456,7 +430,6 @@
                 <div class="research-text">
                     <h3>5. 머신러닝 활용 공정 최적화 (Machine Learning Applications)</h3>
                     <p>전통적인 역학 기반 수치해석의 한계를 돌파하기 위해 데이터 기반의 AI 기술을 도입합니다. 방대한 실험 및 시뮬레이션 데이터를 학습하여 금속 미세조직의 상(Phase) 예측, 물성 최적화, 실시간 결함 탐지 모델을 구축하며, 스마트 팩토리 구현을 위한 자율적인 공정 제어 알고리즘과 지능형 소성 가공 설계 체계를 선도합니다.</p>
-                    <p class="eng-text">To break through the limitations of traditional mechanics-based numerical analysis, we adopt data-driven AI technology. By training on vast amounts of experimental and simulation data, we build models for metal microstructure phase prediction, property optimization, and real-time defect detection, leading the development of autonomous process control algorithms and intelligent plastic forming design frameworks for smart factories.</p>
                 </div>
             </div>
         </section>
@@ -469,11 +442,11 @@
                     <div class="info-group" style="margin-top: 20px;"><h3>Contact</h3><p>📞 053-810-3009<br>🏠 자동차관 201호<br>📧 JinJae.Kim@yu.ac.kr</p></div>
                 </div>
                 <div style="flex: 1;">
-                    <h1>김진재 (Jinjae Kim)</h1>
+                    <h1>김진재 (Jin-Jae Kim)</h1>
                     <p style="font-size: 20px;">영남대학교 미래자동차공학과 조교수</p>
                     <div class="info-group"><h3>학력 사항</h3><ul><li>2015.03 금오공과대학교 공학사</li><li>2017.03 경북대학교 공학석사</li><li>2022.03 경북대학교 공학박사</li></ul></div>
                     <div class="info-group"><h3>경력 사항</h3><ul><li>2022.07~2024.02 UNH Post Doc.</li><li>2024.03~현재 영남대 조교수</li></ul></div>
-                    <div class="info-group"><h3>학회/학술활동</h3><p>국-내외 학회지 18편 게재</p><a href="[https://drive.google.com/drive/folders/1_9ENCA40UtqU_s7E2d-1zSFEf_sjlVJO](https://drive.google.com/drive/folders/1_9ENCA40UtqU_s7E2d-1zSFEf_sjlVJO)" target="_blank" class="scholar-link">Google Scholar 바로가기</a></div>
+                    <div class="info-group"><h3>학회/학술활동</h3><p>국-내외 학회지 18편 게재</p><a href="https://drive.google.com/drive/folders/1_9ENCA40UtqU_s7E2d-1zSFEf_sjlVJO" target="_blank" class="scholar-link">Google Scholar 바로가기</a></div>
                 </div>
             </div>
         </section>
@@ -486,6 +459,11 @@
                 <div class="card"><h3>복진혁 (B.S. Course)</h3><img src="./image/Bok.jpg" style="width:150px; height:180px; object-fit:cover; border-radius:5px; margin:10px 0;"><p>연구분야: 금속재료의 성형성 연구<br>이메일: bokjh03@yu.ac.kr<br>연구실: 자동차관 202호</p></div>
                 <div class="card"><h3>박찬호 (B.S. Course)</h3><img src="./image/Park.jpg" style="width:150px; height:180px; object-fit:cover; border-radius:5px; margin:10px 0;"><p>연구분야: 금속재료의 성형성 연구<br>이메일: GRssalMeongi90@yu.ac.kr<br>연구실: 자동차관 202호</p></div>
             </div>
+        </section>
+
+        <section id="alumni" class="page-section">
+            <div class="section-header"><h2>Alumni</h2></div>
+            <p style="text-align: center;">M-CUBE LAB을 빛낸 졸업생들을 소개합니다.</p>
         </section>
 
         <section id="projects" class="page-section"><div class="section-header"><h2>Projects</h2></div></section>
@@ -559,15 +537,14 @@
         </section>
     </main>
 
-   <footer>
-    <div style="margin-bottom: 10px; font-size: 0.9em; color: #ccc;">
-        Room 202, Automotive Engineering Building, 280 Daehak-ro, Gyeongsan-si, Gyeongsangbuk-do, Republic of Korea<br>
-        E-mail: Jinjae.Kim@yu.ac.kr <br>
-        Tel: +82-53-810-3009
-    </div>
-    <p>© 2026 M-CUBE Laboratory. All rights reserved.</p>
-       
-</footer>
+    <footer>
+        <div style="margin-bottom: 10px; font-size: 0.9em; color: #ccc;">
+            Room 202, Automotive Engineering Building, 280 Daehak-ro, Gyeongsan-si, Gyeongsangbuk-do, Republic of Korea<br>
+            Tel: +82-53-810-3009
+        </div>
+        <p>© 2026 M-CUBE Laboratory. All rights reserved.</p>
+    </footer>
+
     <script>
         function closeModal() {
             document.getElementById('welcome-modal').style.display = 'none';
@@ -594,7 +571,7 @@
             document.getElementById(pageId).classList.add('active');
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('nav-active'));
             
-            if(pageId === 'professor' || pageId === 'students') {
+            if(pageId === 'professor' || pageId === 'students' || pageId === 'alumni') {
                 document.getElementById('link-members').classList.add('nav-active');
             } else {
                 document.getElementById('link-' + pageId)?.classList.add('nav-active');
