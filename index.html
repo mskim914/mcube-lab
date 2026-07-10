@@ -204,9 +204,17 @@
         @keyframes fadeInModal { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
 
         .image-modal-overlay { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); justify-content: center; align-items: center; }
-        .image-modal-content { max-width: 90%; max-height: 90%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); animation: zoomIn 0.3s ease; }
-        .image-close-btn { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .image-modal-content { max-width: 80%; max-height: 80%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); animation: zoomIn 0.3s ease; user-select: none; }
+        .image-close-btn { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; transition: 0.3s; z-index: 3001; }
         .image-close-btn:hover { color: #bbb; }
+        
+        /* 갤러리 슬라이드 화살표 버튼 추가 */
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 50px; font-weight: bold; cursor: pointer; user-select: none; transition: 0.3s; z-index: 3001; padding: 16px; border-radius: 5px; }
+        .nav-btn:hover { color: #bbb; background-color: rgba(0,0,0,0.5); }
+        .prev-btn { left: 20px; }
+        .next-btn { right: 20px; }
+        .image-counter { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: white; font-size: 16px; background: rgba(0,0,0,0.6); padding: 5px 15px; border-radius: 20px; z-index: 3001; }
+
         @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         
         .research-row { display: flex; align-items: center; gap: 50px; margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid #eee; }
@@ -227,13 +235,14 @@
         .scholar-link { display: inline-block; margin-top: 10px; color: #0033cc; font-weight: bold; text-decoration: underline; }
         
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
-        .gallery-card { background: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; transition: transform 0.3s; display: flex; flex-direction: column; }
+        .gallery-card { background: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; transition: transform 0.3s; display: flex; flex-direction: column; cursor: pointer; position: relative; }
         .gallery-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
-        .gallery-img { width: 100%; height: 220px; object-fit: cover; border-bottom: 1px solid #eee; cursor: pointer; transition: opacity 0.3s; }
-        .gallery-img:hover { opacity: 0.85; }
+        .gallery-img { width: 100%; height: 220px; object-fit: cover; border-bottom: 1px solid #eee; transition: opacity 0.3s; }
+        .gallery-card:hover .gallery-img { opacity: 0.85; }
         .gallery-info { padding: 20px; text-align: center; background: #f8f9fa; flex: 1; display: flex; flex-direction: column; justify-content: center; }
         .gallery-info h3 { margin: 0 0 10px 0; font-size: 18px; color: #333; line-height: 1.4; }
         .gallery-date { font-size: 14px; color: #0033cc; font-weight: bold; }
+        .multi-img-icon { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.6); color: white; padding: 4px 10px; border-radius: 15px; font-size: 12px; font-weight: bold; }
 
         .contact-container { max-width: 900px; margin: 0 auto; }
         .contact-top-info { display: flex; gap: 30px; margin-bottom: 30px; flex-wrap: wrap; }
@@ -268,7 +277,10 @@
 
     <div id="image-modal" class="image-modal-overlay" onclick="closeImageModal(event)">
         <span class="image-close-btn" onclick="closeImageModal(event)">×</span>
+        <span class="nav-btn prev-btn" onclick="changeImage(-1, event)">&#10094;</span>
         <img class="image-modal-content" id="expanded-img" alt="확대된 이미지">
+        <span class="nav-btn next-btn" onclick="changeImage(1, event)">&#10095;</span>
+        <div class="image-counter" id="image-counter">1 / 1</div>
     </div>
 
     <header>
@@ -300,7 +312,6 @@
 
     <main>
         <section id="home" class="page-section active">
-            
             <div class="home-slide" id="slide-1">
                 <div class="home-display">
                     <div class="section-header" style="margin-bottom: 20px;">
@@ -318,7 +329,6 @@
 
             <div class="home-slide" id="slide-2">
                 <div class="slide-split-layout">
-                    
                     <div class="slide-left">
                         <h2>Research Topics</h2>
                         <ul class="topic-list">
@@ -329,7 +339,6 @@
                             <li><span class="topic-kor">AI 소성가공 공정 설계</span><span class="topic-eng">AI-based Plastic Forming Process Design</span></li>
                         </ul>
                     </div>
-
                     <div class="slide-center">
                         <div class="preview-list-card" onclick="showPage('projects')">
                             <h3>⚙️ Projects</h3>
@@ -340,7 +349,6 @@
                                 <li><div>스마트 교육센터 ChatGPT 활용학습연구</div></li>
                             </ul>
                         </div>
-                        
                         <div class="preview-list-card" onclick="showPage('publications')">
                             <h3>📄 Publications</h3>
                             <ul class="mini-list">
@@ -351,11 +359,9 @@
                             </ul>
                         </div>
                     </div>
-
                     <div class="slide-right">
                         <div class="preview-list-card" onclick="showPage('gallery')">
                             <h3>🖼️ Gallery</h3>
-                            
                             <ul class="mini-gallery-list">
                                 <li>
                                     <img src="./image/Gallery7.jpg" alt="Gallery">
@@ -386,13 +392,10 @@
                                     </div>
                                 </li>
                             </ul>
-                            
                         </div>
                     </div>
-
                 </div>
             </div>
-
         </section>
         
         <section id="research" class="page-section">
@@ -493,70 +496,54 @@
         <section id="gallery" class="page-section">
             <div class="section-header"><h2>Gallery</h2></div>
             <div class="gallery-grid">
-                <div class="gallery-card">
-                    <img src="./image/Gallery7.jpg" alt="2026년 대한기계학회 대경지회 학술대회" class="gallery-img" onclick="openImage(this.src)">
+                
+                <div class="gallery-card" onclick='openGallery(["./image/Gallery7.jpg"])'>
+                    <img src="./image/Gallery7.jpg" alt="2026년 대한기계학회 대경지회 학술대회" class="gallery-img">
                     <div class="gallery-info"><h3>2026년 대한기계학회 대경지회 학술대회</h3><div class="gallery-date">2026.06.26</div></div>
                 </div>
-                <div class="gallery-card">
-                    <img src="./image/Gallery6.jpg" alt="2026년 스승의 날" class="gallery-img" onclick="openImage(this.src)">
+                
+                <div class="gallery-card" onclick='openGallery(["./image/Gallery6.jpg"])'>
+                    <img src="./image/Gallery6.jpg" alt="2026년 스승의 날" class="gallery-img">
                     <div class="gallery-info"><h3>2026년 스승의 날</h3><div class="gallery-date">2026.05.15</div></div>
                 </div>
-                <div class="gallery-card">
-                    <img src="./image/Gallery5.jpg" alt="2025학년도 제 75회 전기 학위수여식" class="gallery-img" onclick="openImage(this.src)">
+                
+                <div class="gallery-card" onclick='openGallery(["./image/Gallery5.jpg"])'>
+                    <img src="./image/Gallery5.jpg" alt="2025학년도 제 75회 전기 학위수여식" class="gallery-img">
                     <div class="gallery-info"><h3>2025학년도 제 75회 전기 학위수여식</h3><div class="gallery-date">2026.02.20</div></div>
                 </div>
-                <div class="gallery-card">
-                    <img src="./image/Gallery4.jpg" alt="2025년 한국소성가공학회 추계학술대회" class="gallery-img" onclick="openImage(this.src)">
+                
+                <div class="gallery-card" onclick='openGallery(["./image/Gallery4.jpg"])'>
+                    <img src="./image/Gallery4.jpg" alt="2025년 한국소성가공학회 추계학술대회" class="gallery-img">
                     <div class="gallery-info"><h3>2025년 한국소성가공학회 추계학술대회</h3><div class="gallery-date">2025.11.05~07</div></div>
                 </div>
-                <div class="gallery-card">
-                    <img src="./image/Gallery3.jpg" alt="2025년 대한기계학회 대경지회 학술대회" class="gallery-img" onclick="openImage(this.src)">
+
+                <div class="gallery-card" onclick='openGallery(["./image/Gallery3.jpg", "./image/Gallery8.jpg", "./image/Gallery9.jpg", "./image/Gallery10.jpg", "./image/Gallery11.jpg", "./image/Gallery12.jpg", "./image/Gallery13.jpg"])'>
+                    <div class="multi-img-icon">1/7</div>
+                    <img src="./image/Gallery3.jpg" alt="2025년 대한기계학회 대경지회 학술대회" class="gallery-img">
                     <div class="gallery-info"><h3>2025년 대한기계학회 대경지회 학술대회</h3><div class="gallery-date">2025.07.28</div></div>
                 </div>
-                <div class="gallery-card">
-                    <img src="./image/Gallery8.jpg" alt="2025년 대한기계학회 대경지회 학술대회" class="gallery-img" onclick="openImage(this.src)">
-                    <div class="gallery-info"><h3>2025년 대한기계학회 대경지회 학술대회</h3><div class="gallery-date">2025.07.28</div></div>
-                </div>
-                <div class="gallery-card">
-                    <img src="./image/Gallery9.jpg" alt="2025년 대한기계학회 대경지회 학술대회" class="gallery-img" onclick="openImage(this.src)">
-                    <div class="gallery-info"><h3>2025년 대한기계학회 대경지회 학술대회</h3><div class="gallery-date">2025.07.28</div></div>
-                </div>
-                <div class="gallery-card">
-                    <img src="./image/Gallery10.jpg" alt="2025년 대한기계학회 대경지회 학술대회" class="gallery-img" onclick="openImage(this.src)">
-                    <div class="gallery-info"><h3>2025년 대한기계학회 대경지회 학술대회</h3><div class="gallery-date">2025.07.28</div></div>
-                </div>
-                <div class="gallery-card">
-                    <img src="./image/Gallery11.jpg" alt="2025년 대한기계학회 대경지회 학술대회" class="gallery-img" onclick="openImage(this.src)">
-                    <div class="gallery-info"><h3>2025년 대한기계학회 대경지회 학술대회</h3><div class="gallery-date">2025.07.28</div></div>
-                </div>
-                <div class="gallery-card">
-                    <img src="./image/Gallery12.jpg" alt="2025년 대한기계학회 대경지회 학술대회" class="gallery-img" onclick="openImage(this.src)">
-                    <div class="gallery-info"><h3>2025년 대한기계학회 대경지회 학술대회</h3><div class="gallery-date">2025.07.28</div></div>
-                </div>
-                <div class="gallery-card">
-                    <img src="./image/Gallery13.jpg" alt="2025년 대한기계학회 대경지회 학술대회" class="gallery-img" onclick="openImage(this.src)">
-                    <div class="gallery-info"><h3>2025년 대한기계학회 대경지회 학술대회</h3><div class="gallery-date">2025.07.28</div></div>
-                </div>
-                <div class="gallery-card">
-                    <img src="./image/Capstone.jpg" alt="캡스톤 디자인 발표회" class="gallery-img" onclick="openImage(this.src)">
+
+                <div class="gallery-card" onclick='openGallery(["./image/Capstone.jpg"])'>
+                    <img src="./image/Capstone.jpg" alt="캡스톤 디자인 발표회" class="gallery-img">
                     <div class="gallery-info"><h3>캡스톤 디자인 발표회</h3><div class="gallery-date">2025.06.12</div></div>
                 </div>
-                <div class="gallery-card">
-                    <img src="./image/Gallery2.jpg" alt="(주) 화신정공 방문" class="gallery-img" onclick="openImage(this.src)">
+
+                <div class="gallery-card" onclick='openGallery(["./image/Gallery2.jpg"])'>
+                    <img src="./image/Gallery2.jpg" alt="(주) 화신정공 방문" class="gallery-img">
                     <div class="gallery-info"><h3>(주) 화신정공 방문</h3><div class="gallery-date">2025.01.15</div></div>
                 </div>
-                <div class="gallery-card">
-                    <img src="./image/AI Capstone 1.jpg" alt="AI 캡스톤디자인 경진대회" class="gallery-img" onclick="openImage(this.src)">
+
+                <div class="gallery-card" onclick='openGallery(["./image/AI Capstone 1.jpg", "./image/AI Capstone 2.jpg"])'>
+                    <div class="multi-img-icon">1/2</div>
+                    <img src="./image/AI Capstone 1.jpg" alt="AI 캡스톤디자인 경진대회" class="gallery-img">
                     <div class="gallery-info"><h3>AI 캡스톤디자인 경진대회</h3><div class="gallery-date">2024.12.21</div></div>
                 </div>
-                <div class="gallery-card">
-                    <img src="./image/AI Capstone 2.jpg" alt="AI 캡스톤디자인 경진대회" class="gallery-img" onclick="openImage(this.src)">
-                    <div class="gallery-info"><h3>AI 캡스톤디자인 경진대회</h3><div class="gallery-date">2024.12.21</div></div>
-                </div>
-                <div class="gallery-card">
-                    <img src="./image/Gallery1.jpg" alt="현대자동차 남양연구소 방문" class="gallery-img" onclick="openImage(this.src)">
+
+                <div class="gallery-card" onclick='openGallery(["./image/Gallery1.jpg"])'>
+                    <img src="./image/Gallery1.jpg" alt="현대자동차 남양연구소 방문" class="gallery-img">
                     <div class="gallery-info"><h3>현대자동차 남양연구소 방문</h3><div class="gallery-date">2024.08.07</div></div>
                 </div>
+                
             </div>
         </section>
         
@@ -604,6 +591,10 @@
     </footer>
 
     <script>
+        // 현재 선택된 갤러리 이미지 배열과 인덱스를 관리하는 변수
+        let currentGalleryImages = [];
+        let currentImageIndex = 0;
+
         function closeModal() {
             document.getElementById('welcome-modal').style.display = 'none';
         }
@@ -613,13 +604,57 @@
             showPage('contact');
         }
 
-        function openImage(src) {
+        // 이미지 배열을 받아 모달을 여는 함수
+        function openGallery(imageArray) {
+            currentGalleryImages = imageArray;
+            currentImageIndex = 0;
+            
             document.getElementById('image-modal').style.display = 'flex';
-            document.getElementById('expanded-img').src = src;
+            updateModalImage();
+            
+            // 사진이 여러 장일 때만 화살표와 카운터 표시
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            const counter = document.getElementById('image-counter');
+            
+            if (currentGalleryImages.length > 1) {
+                prevBtn.style.display = 'block';
+                nextBtn.style.display = 'block';
+                counter.style.display = 'block';
+            } else {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+                counter.style.display = 'none';
+            }
         }
 
+        // 화살표 클릭 시 이미지 변경 함수
+        function changeImage(direction, event) {
+            // 부모(모달 오버레이)로의 클릭 이벤트 전파 방지 (모달이 닫히지 않게 함)
+            if (event) event.stopPropagation();
+            
+            currentImageIndex += direction;
+            
+            // 인덱스 범위 순환 처리
+            if (currentImageIndex >= currentGalleryImages.length) {
+                currentImageIndex = 0;
+            } else if (currentImageIndex < 0) {
+                currentImageIndex = currentGalleryImages.length - 1;
+            }
+            
+            updateModalImage();
+        }
+
+        // 화면에 표시되는 모달 이미지 및 카운터 업데이트 함수
+        function updateModalImage() {
+            document.getElementById('expanded-img').src = currentGalleryImages[currentImageIndex];
+            document.getElementById('image-counter').innerText = (currentImageIndex + 1) + ' / ' + currentGalleryImages.length;
+        }
+
+        // 모달 닫기 함수
         function closeImageModal(event) {
-            if (event.target.id === 'image-modal' || event.target.className === 'image-close-btn') {
+            // 확대된 이미지나 좌우 버튼을 누른 경우는 창이 안 닫히게 예외 처리
+            if (event.target.id === 'image-modal' || event.target.className.includes('image-close-btn')) {
                 document.getElementById('image-modal').style.display = 'none';
             }
         }
