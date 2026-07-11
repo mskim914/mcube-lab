@@ -208,7 +208,6 @@
         .image-close-btn { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; transition: 0.3s; z-index: 3001; }
         .image-close-btn:hover { color: #bbb; }
         
-        /* 갤러리 슬라이드 화살표 버튼 추가 */
         .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 50px; font-weight: bold; cursor: pointer; user-select: none; transition: 0.3s; z-index: 3001; padding: 16px; border-radius: 5px; }
         .nav-btn:hover { color: #bbb; background-color: rgba(0,0,0,0.5); }
         .prev-btn { left: 20px; }
@@ -233,6 +232,12 @@
         .info-group { margin-bottom: 25px; }
         .info-group h3 { color: #0033cc; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 10px; }
         .scholar-link { display: inline-block; margin-top: 10px; color: #0033cc; font-weight: bold; text-decoration: underline; }
+
+        /* 논문 목록 스타일 추가 */
+        .pub-list { max-width: 1000px; margin: 0 auto; list-style: none; padding: 0; }
+        .pub-item { background: #f8f9fa; padding: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px; font-size: 17px; line-height: 1.6; border-left: 5px solid #0033cc; transition: transform 0.2s; }
+        .pub-item:hover { transform: translateX(5px); }
+        .pub-item strong { color: #0033cc; font-weight: bold; }
         
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
         .gallery-card { background: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; transition: transform 0.3s; display: flex; flex-direction: column; cursor: pointer; position: relative; }
@@ -277,9 +282,9 @@
 
     <div id="image-modal" class="image-modal-overlay" onclick="closeImageModal(event)">
         <span class="image-close-btn" onclick="closeImageModal(event)">×</span>
-        <span class="nav-btn prev-btn" onclick="changeImage(-1, event)">&#10094;</span>
+        <span class="nav-btn prev-btn" onclick="changeImage(-1, event)">❮</span>
         <img class="image-modal-content" id="expanded-img" alt="확대된 이미지">
-        <span class="nav-btn next-btn" onclick="changeImage(1, event)">&#10095;</span>
+        <span class="nav-btn next-btn" onclick="changeImage(1, event)">❯</span>
         <div class="image-counter" id="image-counter">1 / 1</div>
     </div>
 
@@ -491,7 +496,27 @@
         </section>
 
         <section id="projects" class="page-section"><div class="section-header"><h2>Projects</h2></div></section>
-        <section id="publications" class="page-section"><div class="section-header"><h2>Publications</h2></div></section>
+        
+        <section id="publications" class="page-section">
+            <div class="section-header"><h2>Publications</h2></div>
+            <ul class="pub-list">
+                <li class="pub-item">
+                    Uichan Jeong, <strong>Jinjae Kim</strong>. "Prediction of Forming Limit Curve for CP-Ti Sheet Using Equivalent Plastic Work–dependent Evolving Parameters." <em>Korean Society for Precision Engineering</em> (2026).
+                </li>
+                <li class="pub-item">
+                    Hyo-Won Jeon, Chang Hee Suh, Tae-Ha Kwon, Sang-Gyun Oh, <strong>Jinjae Kim</strong>. "A Study on Oil Seal Shape Design for Railway Vehicle Damper Using Simulation Automation and Machine Learning." <em>Journal of the Korean Society of Manufacturing Process Engineers</em> (2026).
+                </li>
+                <li class="pub-item">
+                    <strong>Jinjae Kim</strong>, Jeonghun Choi, Jinjin Ha, Jinwoo Lee. "Ogden–Polynomial Hybrid Strain Energy Function for Rubber-Like Materials: Improved Derivative Fidelity and Material Stability." <em>International Journal of Precision Engineering and Manufacturing</em> (2026).
+                </li>
+                <li class="pub-item">
+                    Jeong-Woong Baek, Ui-Chan Jeong, Bu-min Kim, Young-Joon Kim, <strong>Jinjae Kim</strong>. "Dataset Construction and Performance Evaluation of a CNN Based Defect Classifier for Automotive Parts Manufacturing." <em>Journal of the Korean Society of Manufacturing Technology Engineers</em> (2025).
+                </li>
+                <li class="pub-item">
+                    <strong>Jinjae Kim</strong>, Abrar S. Ebrahim, Brad L. Kinsey, Jinjin Ha. "Identification of Yld2000–2d anisotropic yield function parameters from single hole expansion test using machine learning." <em>CIRP Annals - Manufacturing Technology</em> (2024).
+                </li>
+            </ul>
+        </section>
         
         <section id="gallery" class="page-section">
             <div class="section-header"><h2>Gallery</h2></div>
