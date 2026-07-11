@@ -218,11 +218,16 @@
         
         .research-row { display: flex; align-items: center; gap: 50px; margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid #eee; }
         .research-row.reverse { flex-direction: row-reverse; }
-        .research-img { width: 500px; height: auto; max-height: 350px; object-fit: contain; }
+        .research-img { width: 500px; height: auto; max-height: 350px; object-fit: contain; flex-shrink: 0; }
+        
+        /* 다중 이미지를 위한 클래스 추가 */
+        .research-multi-img { display: flex; gap: 15px; width: 500px; flex-shrink: 0; }
+        .research-multi-img img { width: calc(50% - 7.5px); height: 280px; object-fit: cover; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        
         .research-text { flex: 1; }
-        .research-text h3 { color: #0033cc; font-size: 26px; margin-bottom: 15px; }
-        .research-text p { font-size: 18px; color: #444; margin-bottom: 10px; line-height: 1.8; }
-        .research-text .eng-text { font-size: 16px; color: #777; font-style: italic; margin-top: 10px; }
+        .research-text h3 { color: #0033cc; font-size: 26px; margin-bottom: 15px; line-height: 1.3; }
+        .research-text p { font-size: 18px; color: #444; margin-bottom: 15px; line-height: 1.8; word-break: keep-all; }
+        .research-text .eng-text { font-size: 16px; color: #777; font-style: italic; margin-top: 10px; line-height: 1.6; }
 
         .grid-container { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; }
         .card { background: #f8f9fa; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); width: 280px; text-align: center; }
@@ -233,7 +238,6 @@
         .info-group h3 { color: #0033cc; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 10px; }
         .scholar-link { display: inline-block; margin-top: 10px; color: #0033cc; font-weight: bold; text-decoration: underline; }
 
-        /* 논문 목록 스타일 추가 */
         .pub-list { max-width: 1000px; margin: 0 auto; list-style: none; padding: 0; }
         .pub-item { background: #f8f9fa; padding: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px; font-size: 17px; line-height: 1.6; border-left: 5px solid #0033cc; transition: transform 0.2s; }
         .pub-item:hover { transform: translateX(5px); }
@@ -405,39 +409,43 @@
         
         <section id="research" class="page-section">
             <div class="section-header"><h2>Research</h2></div>
+            
             <div class="research-row">
-                <img src="./image/Research 1.jpg" alt="성형한계선도" class="research-img">
+                <img src="./image/Research 1.jpg" alt="금속재료 탄소성 거동 예측" class="research-img">
                 <div class="research-text">
-                    <h3>1. 금속재료의 성형한계선도 (Forming Limit Diagram, FLD)</h3>
-                    <p>재료의 변형 한계를 결정하는 성형한계선도를 이론적·실험적으로 분석합니다. 실제 프레스 성형 공정 중 발생하는 국부 네킹(Necking) 및 파단(Fracture)을 사전에 예측함으로써 제품의 형상 정밀도와 구조적 안전성을 확보하고, 재료의 소성 가공 한계를 극대화하는 연구를 수행합니다.</p>
+                    <h3>1. 금속재료의 탄소성 거동 예측을 위한 구성방정식<br><span style="font-size: 20px; color: #555;">(Constitutive Equations for Predicting Elasto-plastic Behavior of Metallic Materials)</span></h3>
+                    <p>재료의 변형 한계를 결정하는 성형한계선도(FLD), 판재의 소성 이방성으로 인해 발생하는 딥드로잉 제품의 귀(Earing) 현상, 그리고 금형 하중 제거 시 발생하는 탄성 복원 현상인 스프링백(Springback)을 종합적으로 예측합니다. 고차 항복 함수와 복합 경화 법칙을 결합한 해석 기술을 통해 금속 재료의 소성 가공 한계를 극대화하고 고정밀 부품의 치수 정확도를 보장하는 핵심 기술을 개발합니다.</p>
+                    <p class="eng-text">We comprehensively predict the Forming Limit Diagram (FLD) which determines the deformation limit of materials, the earing phenomenon in deep-drawn products caused by plastic anisotropy, and the springback behavior upon unloading. By developing constitutive equations that combine advanced yield functions and complex hardening laws, we maximize the plastic forming limits of metallic materials and ensure the dimensional accuracy of high-precision components.</p>
                 </div>
             </div>
+            
             <div class="research-row reverse">
-                <img src="./image/Research 2.jpg" alt="귀 발생 예측" class="research-img">
+                <div class="research-multi-img">
+                    <img src="./image/Research 7.jpg" alt="초탄성재료 1">
+                    <img src="./image/Research 6.jpg" alt="초탄성재료 2">
+                </div>
                 <div class="research-text">
-                    <h3>2. 딥드로잉 과정에서 귀 발생 예측 (Prediction of Earing in Deep Drawing)</h3>
-                    <p>판재의 소성 이방성으로 인해 발생하는 딥드로잉 제품의 귀(Earing) 현상을 깊이 있게 연구합니다. 초기 판재의 집합조직과 이방성 계수를 정밀하게 모델링하고 유한요소해석을 단행하여 귀 높이를 예측하며, 공정 변수를 최적화하여 불균일한 변형을 최소화하고 균일한 제품 품질을 달성합니다.</p>
+                    <h3>2. 초탄성재료의 변형 거동 예측을 위한 구성방정식 개발<br><span style="font-size: 20px; color: #555;">(Development of Constitutive Equations for Predicting Deformation Behavior of Hyperelastic Materials)</span></h3>
+                    <p>고무, 폴리머 등 초탄성(Hyperelastic) 재료가 겪는 대변형 및 복잡한 비선형 거동을 정확하게 모사하기 위한 변형률 에너지 함수(Strain Energy Function)를 연구합니다. 고차 다항식(Polynomial)과 Ogden 모델 등의 장점을 결합한 하이브리드 모델을 개발하여 수치 해석적 안정성을 확보하고, 철도차량 댐퍼나 오일 씰(Oil Seal) 등 정밀 고무 부품 설계 시뮬레이션의 신뢰성을 획기적으로 향상시킵니다.</p>
+                    <p class="eng-text">We study strain energy functions to accurately simulate the large deformation and complex nonlinear behavior of hyperelastic materials such as rubbers and polymers. By developing a hybrid model that combines the advantages of high-order polynomial and Ogden models, we secure numerical stability and dramatically improve the reliability of design simulations for precision rubber components like railway vehicle dampers and oil seals.</p>
                 </div>
             </div>
+            
             <div class="research-row">
-                <img src="./image/Research 3.jpg" alt="스프링백 예측" class="research-img">
+                <img src="./image/Research 4.jpg" alt="피로 파괴 해석" class="research-img">
                 <div class="research-text">
-                    <h3>3. 금속재료의 스프링백 예측 (Prediction of Springback in Metal Forming)</h3>
-                    <p>성형 공정 후 하중 제거 시 발생하는 탄성 복원 현상인 스프링백을 예측하고 능동적으로 보정합니다. 고차 항복 함수와 복합 경화 법칙을 결합한 해석 기술을 통해 금형 수정 비용을 혁신적으로 절감하며, 자동차의 외판 부품과 같은 고정밀 기계 요소의 치수 정확도를 보장하는 핵심 기술을 개발합니다.</p>
-                </div>
-            </div>
-            <div class="research-row reverse">
-                <img src="./image/Research 4.jpg" alt="피로 파괴" class="research-img">
-                <div class="research-text">
-                    <h3>4. 소성가공 제품의 피로 파괴 해석 (Fatigue Failure Analysis)</h3>
+                    <h3>3. 소성가공 제품의 피로 파괴 해석<br><span style="font-size: 20px; color: #555;">(Fatigue Failure Analysis of Plastically Deformed Products)</span></h3>
                     <p>성형 변형을 거친 제품이 장기 사용 시 반복 하중을 받을 때 나타나는 피로 파괴 거동을 종합적으로 연구합니다. 가공 이력에 따른 가공 경화와 잔류 응력 분포가 피로 수명에 미치는 정량적 영향을 평가하며, 극한 환경에서도 구조적 안정성을 유지할 수 있도록 내구 수명 최적화 설계를 위한 방법론을 제시합니다.</p>
+                    <p class="eng-text">We comprehensively study the fatigue failure behavior of plastically deformed products subjected to cyclic loading during long-term use. We evaluate the quantitative effects of work hardening and residual stress distribution due to processing history on fatigue life, and propose methodologies for optimizing durability design to maintain structural stability even in extreme environments.</p>
                 </div>
             </div>
-            <div class="research-row">
-                <img src="./image/Research 5.jpg" alt="머신러닝 활용" class="research-img">
+            
+            <div class="research-row reverse">
+                <img src="./image/Research 5.jpg" alt="머신러닝 활용 공정 최적화" class="research-img">
                 <div class="research-text">
-                    <h3>5. 머신러닝 활용 공정 최적화 (Machine Learning Applications)</h3>
+                    <h3>4. 머신러닝 활용 공정 최적화<br><span style="font-size: 20px; color: #555;">(Machine Learning Applications for Process Optimization)</span></h3>
                     <p>전통적인 역학 기반 수치해석의 한계를 돌파하기 위해 데이터 기반의 AI 기술을 도입합니다. 방대한 실험 및 시뮬레이션 데이터를 학습하여 금속 미세조직의 상(Phase) 예측, 물성 최적화, 실시간 결함 탐지 모델을 구축하며, 스마트 팩토리 구현을 위한 자율적인 공정 제어 알고리즘과 지능형 소성 가공 설계 체계를 선도합니다.</p>
+                    <p class="eng-text">We introduce data-driven AI technology to overcome the limitations of traditional mechanics-based numerical analysis. By learning vast amounts of experimental and simulation data, we build models for phase prediction of metal microstructures, optimization of material properties, and real-time defect detection, leading autonomous process control algorithms and intelligent plastic working design systems for realizing smart factories.</p>
                 </div>
             </div>
         </section>
@@ -499,7 +507,6 @@
         
         <section id="publications" class="page-section">
             <div class="section-header"><h2>Publications</h2></div>
-             <p style="text-align: center; margin-bottom: 30px;">머신러닝 기반의 해석 자동화부터 첨단 소재 구성방정식 모델링까지, 미래 제조 산업의 혁신을 이끄는 M-CUBE LAB의 연구성과입니다.</p>
             <ul class="pub-list">
                 <li class="pub-item">
                     Uichan Jeong, <strong>Jinjae Kim</strong>. "Prediction of Forming Limit Curve for CP-Ti Sheet Using Equivalent Plastic Work–dependent Evolving Parameters." <em>Korean Society for Precision Engineering</em> (2026).
