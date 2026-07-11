@@ -218,9 +218,16 @@
         
         .research-row { display: flex; align-items: center; gap: 50px; margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid #eee; }
         .research-row.reverse { flex-direction: row-reverse; }
-        .research-img { width: 500px; height: auto; max-height: 350px; object-fit: contain; flex-shrink: 0; }
         
-        /* 다중 이미지를 위한 클래스 추가 */
+        /* Research 8.jpg 크기 제어를 위해 height를 고정하고 object-fit 속성을 강화 */
+        .research-img { width: 500px; height: 350px; object-fit: contain; flex-shrink: 0; border-radius: 8px; }
+        
+        /* 통합된 섹션을 위해 3개의 이미지를 배치하는 그리드 레이아웃 추가 */
+        .research-grid-3 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width: 500px; flex-shrink: 0; }
+        .research-grid-3 img { width: 100%; height: 165px; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); background-color: #fff; border: 1px solid #eaeaea; box-sizing: border-box; }
+        .research-grid-3 img:first-child { grid-column: span 2; height: 170px; }
+
+        /* 다중 이미지를 위한 클래스 유지 */
         .research-multi-img { display: flex; gap: 15px; width: 500px; flex-shrink: 0; }
         .research-multi-img img { width: calc(50% - 7.5px); height: 280px; object-fit: cover; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         
@@ -411,7 +418,11 @@
             <div class="section-header"><h2>Research</h2></div>
             
             <div class="research-row">
-                <img src="./image/Research 1.jpg" alt="금속재료 탄소성 거동 예측" class="research-img">
+                <div class="research-grid-3">
+                    <img src="./image/Research 1.jpg" alt="성형한계선도 예측">
+                    <img src="./image/Research 2.jpg" alt="귀 발생 예측">
+                    <img src="./image/Research 3.jpg" alt="스프링백 예측">
+                </div>
                 <div class="research-text">
                     <h3>1. 금속재료의 탄소성 거동 예측을 위한 구성방정식<br><span style="font-size: 20px; color: #555;">(Constitutive Equations for Predicting Elastic-Plastic Behavior of Metallic Materials)</span></h3>
                     <p>재료의 변형 한계를 결정하는 성형한계선도(FLD), 판재의 소성 이방성으로 인해 발생하는 딥드로잉 제품의 귀(Earing) 현상, 그리고 금형 하중 제거 시 발생하는 탄성 복원 현상인 스프링백(Springback)을 종합적으로 예측합니다. 고차 항복 함수와 복합 경화 법칙을 결합한 해석 기술을 통해 금속 재료의 소성 가공 한계를 극대화하고 고정밀 부품의 치수 정확도를 보장하는 핵심 기술을 개발합니다.</p>
@@ -420,7 +431,7 @@
             </div>
             
             <div class="research-row reverse">
-                <img src="./image/Research 8.jpg" alt="초탄성재료 ">
+                <img src="./image/Research 8.jpg" alt="초탄성재료" class="research-img">
                 <div class="research-text">
                     <h3>2. 초탄성재료의 변형 거동 예측을 위한 구성방정식 개발<br><span style="font-size: 20px; color: #555;">(Development of Constitutive Equations for Predicting Deformation Behavior of Hyperelastic Materials)</span></h3>
                     <p>고무, 폴리머 등 초탄성(Hyperelastic) 재료가 겪는 대변형 및 복잡한 비선형 거동을 정확하게 모사하기 위한 변형률 에너지 함수(Strain Energy Function)를 연구합니다. 고차 다항식(Polynomial)과 Ogden 모델 등의 장점을 결합한 하이브리드 모델을 개발하여 수치 해석적 안정성을 확보하고, 철도차량 댐퍼나 오일 씰(Oil Seal) 등 정밀 고무 부품 설계 시뮬레이션의 신뢰성을 획기적으로 향상시킵니다.</p>
