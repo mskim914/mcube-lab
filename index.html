@@ -249,6 +249,13 @@
         .pub-item:hover { transform: translateX(5px); }
         .pub-item strong { color: #0033cc; font-weight: bold; }
         
+        /* 프로젝트 리스트 스타일 추가 */
+        .proj-list { max-width: 1000px; margin: 0 auto; list-style: none; padding: 0; }
+        .proj-item { background: #f8f9fa; padding: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px; font-size: 17px; line-height: 1.6; border-left: 5px solid #0033cc; transition: transform 0.2s; }
+        .proj-item:hover { transform: translateX(5px); }
+        .proj-title { font-size: 18px; font-weight: bold; color: #0033cc; margin-bottom: 10px; display: block; }
+        .proj-info { color: #555; display: block; font-size: 16px; margin-top: 5px; }
+
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
         .gallery-card { background: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; transition: transform 0.3s; display: flex; flex-direction: column; cursor: pointer; position: relative; }
         .gallery-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
@@ -359,10 +366,8 @@
                             <div class="preview-list-card" onclick="showPage('projects')">
                                 <h3>⚙️ Projects</h3>
                                 <ul class="mini-list">
-                                    <li><div>AI-기반 자동화 결함 탐지 시스템 (YOLOv5-seg)</div></li>
-                                    <li><div>금속 미세조직 시맨틱 세그먼테이션 (U-Net)</div></li>
-                                    <li><div>로봇 파지(Grasping) 강화학습 제어 시뮬레이션</div></li>
-                                    <li><div>스마트 교육센터 ChatGPT 활용학습연구</div></li>
+                                    <li><div>기가급 초고강도강 전단금형 수명연장 기술 개발<span class="date-badge">26.04 ~ 29.12</span></div></li>
+                                    <li><div>자동차용 판재의 성형한계선도 예측<span class="date-badge">25.09 ~ 26.01</span></div></li>
                                 </ul>
                             </div>
                             <div class="preview-list-card" onclick="showPage('publications')">
@@ -511,24 +516,35 @@
             </div>
         </section>
 
-        <section id="projects" class="page-section"><div class="section-header"><h2>Projects</h2></div></section>
+        <section id="projects" class="page-section">
+            <div class="section-header"><h2>Projects</h2></div>
+            <ul class="proj-list">
+                <li class="proj-item">
+                    <span class="proj-title">기가급 초고강도강 전단금형 수명 200%달성을 위한 FSP 고경도 표면개질 공정 및 AI기반 지능형 진단 기술 개발</span>
+                    <span class="proj-info">소재부품기술개발사업 / 산업통상부, 26.04. ~ 29.12.</span>
+                    <span class="proj-info">연구참여 (*4,000)</span>
+                </li>
+                <li class="proj-item">
+                    <span class="proj-title">자동차용 판재의 성형한계선도 예측</span>
+                    <span class="proj-info">메가버시티 융합부품사업 / 교육부(RISE사업단), 25.09. ~ 26.01.</span>
+                    <span class="proj-info">연구책임자 (*1,000)</span>
+                </li>
+            </ul>
+        </section>
         
         <section id="publications" class="page-section">
             <div class="section-header"><h2>Publications</h2></div>
             <p style="text-align: center; margin-bottom: 30px;">머신러닝 기반의 해석 자동화부터 첨단 소재 구성방정식 모델링까지, 미래 제조 산업의 혁신을 이끄는 M-CUBE LAB의 연구성과입니다.</p>
             <ul class="pub-list">
                 <li class="pub-item">
-                    <strong>Jinjae Kim</strong>, Jeonghun Choi, Jinjin Ha, Jinwoo Lee. "Ogden–Polynomial Hybrid Strain Energy Function for Rubber-Like Materials: Improved Derivative Fidelity and Material Stability." <em>International Journal of Precision Engineering and Manufacturing</em> (2026).
+                    Uichan Jeong, <strong>Jinjae Kim</strong>. "Prediction of Forming Limit Curve for CP-Ti Sheet Using Equivalent Plastic Work–dependent Evolving Parameters." <em>Korean Society for Precision Engineering</em> (2026).
                 </li>
-                
-                <li class="pub-item">
-                     <strong style="color: #000;">Uichan Jeong</strong>, <strong>Jinjae Kim</strong>. "Prediction of Forming Limit Curve for CP-Ti Sheet Using Equivalent Plastic Work–dependent Evolving Parameters." <em>Korean Society for Precision Engineering</em> (2026).
-                </li>
-                
                 <li class="pub-item">
                     Hyo-Won Jeon, Chang Hee Suh, Tae-Ha Kwon, Sang-Gyun Oh, <strong>Jinjae Kim</strong>. "A Study on Oil Seal Shape Design for Railway Vehicle Damper Using Simulation Automation and Machine Learning." <em>Journal of the Korean Society of Manufacturing Process Engineers</em> (2026).
                 </li>
-            
+                <li class="pub-item">
+                    <strong>Jinjae Kim</strong>, Jeonghun Choi, Jinjin Ha, Jinwoo Lee. "Ogden–Polynomial Hybrid Strain Energy Function for Rubber-Like Materials: Improved Derivative Fidelity and Material Stability." <em>International Journal of Precision Engineering and Manufacturing</em> (2026).
+                </li>
                 <li class="pub-item">
                     <strong style="color: #000;">Jeong-Woong Baek, Ui-Chan Jeong, Bu-min Kim, Young-Joon Kim</strong>, <strong>Jinjae Kim</strong>. "Dataset Construction and Performance Evaluation of a CNN Based Defect Classifier for Automotive Parts Manufacturing." <em>Journal of the Korean Society of Manufacturing Technology Engineers</em> (2025).
                 </li>
@@ -628,7 +644,7 @@
 
     <footer>
         <div style="margin-bottom: 10px; font-size: 0.9em; color: #ccc;">
-            Room 201, Automotive Engineering Building, 280 Daehak-ro, Gyeongsan-si, Gyeongsangbuk-do, Republic of Korea<br>
+            Room 202, Automotive Engineering Building, 280 Daehak-ro, Gyeongsan-si, Gyeongsangbuk-do, Republic of Korea<br>
             Email: JinJae.Kim@yu.ac.kr <br>
             Tel: +82-53-810-3009
         </div>
